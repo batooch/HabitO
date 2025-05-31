@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class OriChat extends StatelessWidget {
-  const OriChat({super.key});
+class ExplanationPage extends StatelessWidget {
+  const ExplanationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hi moin Meister ich bin Ori"),
+        title: Text("Ich bin eine Erklärseite."),
       ),
       body: const Center(
-        child: Text("Frag mich mal was"),
+        child: Text("Willkommen + Erklärung"),
       ),
     );
   }
