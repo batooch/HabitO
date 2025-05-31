@@ -8,9 +8,7 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
-import 'package:habito/navigation_screen.dart';
-import 'package:habito/pages/create_habit_page.dart';
-import 'package:habito/pages/home.dart';
+
 
 
 void main() async {
