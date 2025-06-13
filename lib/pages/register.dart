@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:habito/pages/splash.dart';
 import 'package:habito/services/auth_service.dart';
+
+import 'easy_test_login.dart';
 
 
 class Register extends StatefulWidget {
@@ -77,14 +77,17 @@ class _RegisterState extends State<Register> {
           onPressed: () async {
             final email = emailController.text.trim();
             final password = passwordController.text.trim();
-            print("sime");
+            final firstName = firstNameController.text.trim();
+            final lastName = lastNameController.text.trim();
             final user = await _authService.registerWithEmailAndPassword(
               email: email,
               password: password,
+              firstName: firstName,
+              lastName: lastName,
             );
 
             if (user != null) {
-              Get.to(() => const Splash());
+              Get.to(() => const EasyTestLogin());
             } else {
               Get.snackbar(
                 "Fehler",
