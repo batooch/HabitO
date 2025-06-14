@@ -23,6 +23,7 @@ class AuthService {
           'uid': user.uid,
           'email': email,
           'firstName': firstName,
+          'lastName' : lastName,
           'createdAt': FieldValue.serverTimestamp(),
         });
       }
