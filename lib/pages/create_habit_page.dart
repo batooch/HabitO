@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CreateHabitPage extends StatelessWidget {
+class CreateHabitPage extends StatefulWidget {
   const CreateHabitPage({super.key});
+
+  @override
+  State<CreateHabitPage> createState() => _CreateHabitPageState();
+}
+
+class _CreateHabitPageState extends State<CreateHabitPage> {
+
+  final TextEditingController _habitController = TextEditingController();
+
+  @override
+  void dispose() {
+    _habitController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +28,7 @@ class CreateHabitPage extends StatelessWidget {
         child: Column(
           children: [
             TextField(
+              controller: _habitController,
               decoration: const InputDecoration(
                 labelText: "Gewohnheit erstellen",
                 border: OutlineInputBorder(),
@@ -23,7 +38,7 @@ class CreateHabitPage extends StatelessWidget {
 
             ElevatedButton(
                 onPressed: () {
-
+                  print(_habitController.text);
                 },
                 child: const Text("Erstellen"))
           ],
