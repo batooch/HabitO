@@ -7,9 +7,30 @@ class CreateHabitPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ich bin eine Seite um neue Gewohnheiten zu erstellen."),
+        title: Text("Was möchtest du zur Gewohnheit machen?"),
       ),
-      body: Text("Erstelle eine neue Gewohnheit lossssss."),
+      body: Padding(
+          padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Gewohnheit erstellen",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+                onPressed: () {
+
+                },
+                child: const Text("Erstellen"))
+          ],
+        ),
+
+
+      )
     );
   }
 }
