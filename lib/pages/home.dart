@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:habito/pages/create_habit_page.dart';
+import 'package:habito/pages/create_habit/view/create_habit_page.dart';
 import 'package:habito/pages/ori_chat.dart';
 
 class Home extends StatelessWidget {

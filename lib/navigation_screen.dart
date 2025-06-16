@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habito/pages/create_habit_page.dart';
+import 'package:habito/pages/create_habit/view/create_habit_page.dart';
 import 'package:habito/pages/home.dart';
 import 'package:habito/pages/monthly_habit_overview.dart';
 
