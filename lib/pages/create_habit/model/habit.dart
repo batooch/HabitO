@@ -1,7 +1,7 @@
 
  class Habit {
 
-  final String id;
+  final String? id;
   final String title;
   final DateTime createdAt;
 
@@ -12,7 +12,6 @@
   });
   Map<String, dynamic> toMap() {
    return {
-    'id': id,
     'title': title,
     'createdAt': createdAt.toIso8601String(),
    };
