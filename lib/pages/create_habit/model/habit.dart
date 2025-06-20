@@ -24,4 +24,15 @@ class Habit {
       'evening': evening,
     };
   }
+
+  factory Habit.fromMap (Map<String, dynamic> map, String documentId) {
+    return Habit(
+        id: documentId,
+        title: map['title'] ?? 'Unbenannt',
+        createdAt: DateTime.parse(map['createdAt']),
+        morning: map['morning'] ?? false,
+        noon: map['noon'] ?? false,
+        evening: map['evening'] ?? false,
+    );
+  }
 }
