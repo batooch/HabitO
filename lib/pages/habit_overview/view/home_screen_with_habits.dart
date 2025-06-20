@@ -24,7 +24,6 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1️⃣ Begrüßung
               const Text(
                 "Hallo Annika",
                 style: TextStyle(
@@ -35,7 +34,6 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
               ),
               const SizedBox(height: 20),
 
-              // 2️⃣ FutureBuilder für die Habit-Liste
               Expanded(
                 child: FutureBuilder<List<Habit>>(
                   future: _habitController.fetchHabits(),
@@ -52,7 +50,8 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
 
                     if (habits == null || habits.isEmpty) {
                       return const Center(
-                          child: Text('Noch keine Habits erstellt.'));
+                        child: Text('Noch keine Habits erstellt.'),
+                      );
                     }
 
                     return ListView.builder(
