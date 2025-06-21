@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/pages/home.dart';
 import 'package:habito/pages/register.dart';
 import 'package:habito/services/auth_service.dart';
@@ -63,7 +64,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                   );
 
                   if (user != null) {
-                    Get.to(() => const Home());
+                    context.goNamed('homeNoHabit');
                   } else {
                     Get.snackbar(
                       "Fehler",
@@ -79,7 +80,9 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
             const SizedBox(height: 32),
             Center(
               child: TextButton(
-                onPressed: () => Get.to(() => const Register()),
+                onPressed: () {
+                  context.goNamed('register');
+                },
                 child: const Text("Noch keinen Account? Jetzt registrieren"),
               ),
             )
