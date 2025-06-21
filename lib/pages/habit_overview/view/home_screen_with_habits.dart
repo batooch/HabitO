@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:habito/pages/create_habit/model/habit.dart';
-
 import '../control/habit_list_controller.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
@@ -33,7 +31,6 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                 ),
               ),
               const SizedBox(height: 20),
-
               Expanded(
                 child: FutureBuilder<List<Habit>>(
                   future: _habitController.fetchHabits(),
@@ -54,20 +51,50 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                       );
                     }
 
-                    return ListView.builder(
-                      itemCount: habits.length,
-                      itemBuilder: (context, index) {
-                        final habit = habits[index];
-                        return Card(
-                          margin: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: ListTile(
-                            title: Text(habit.title),
-                            subtitle: Text(
-                              ' ${habit.morning ? 'Morgens ' : ''}${habit.noon ? 'Mittags ' : ''}${habit.evening ? 'Abends' : ''}',
+                    final morningHabits =
+                        habits.where((habit) => habit.morning).toList();
+                    final noonHabits = habits.where((habit) => habit.noon).toList();
+                    final eveningHabits =
+                        habits.where((habit) => habit.evening).toList();
+
+                    return ListView(
+                      children: [
+                        if (morningHabits.isNotEmpty) ...[
+                          const Text(
+                            "Morgens",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        );
-                      },
+                          const Text("08:00 - 11:00"),
+                          ...morningHabits.map(buildHabitCard).toList(),
+                        ],
+                        if (noonHabits.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          const Text(
+                            "Mittags",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Text("11:00 - 16:00"),
+                          ...noonHabits.map(buildHabitCard).toList(),
+                        ],
+                        if (eveningHabits.isNotEmpty) ...[
+                          const SizedBox(height: 16),
+                          const Text(
+                            "Abends",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Text("16:00 - 22:00"),
+                          ...eveningHabits.map(buildHabitCard).toList(),
+                        ],
+                      ],
                     );
                   },
                 ),
@@ -76,6 +103,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildHabitCard(Habit habit) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ListTile(title: Text(habit.title)),
     );
   }
 }
