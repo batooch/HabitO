@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/pages/create_habit/control/create_habit_controller.dart';
 import 'package:habito/pages/create_habit/model/habit.dart';
 
@@ -63,15 +64,18 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ChoiceChip(label: const Text("Morgens"),
+                ChoiceChip(
+                  label: const Text("Morgens"),
                   selected: isMorning,
                   onSelected: (value) => setState(() => isMorning = value),
                 ),
-                ChoiceChip(label: const Text("Mittags"),
+                ChoiceChip(
+                  label: const Text("Mittags"),
                   selected: isNoon,
                   onSelected: (value) => setState(() => isNoon = value),
                 ),
-                ChoiceChip(label: const Text("Abends"),
+                ChoiceChip(
+                  label: const Text("Abends"),
                   selected: isEvening,
                   onSelected: (value) => setState(() => isEvening = value),
                 ),
@@ -81,6 +85,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
             ElevatedButton(
               onPressed: () {
                 _handleSubmitHabit();
+                context.goNamed('home');
               },
               child: const Text("Erstellen"),
             ),

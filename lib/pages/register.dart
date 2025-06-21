@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/services/auth_service.dart';
 
 import 'easy_test_login.dart';
@@ -87,7 +88,7 @@ class _RegisterState extends State<Register> {
             );
 
             if (user != null) {
-              Get.to(() => const EasyTestLogin());
+            context.goNamed('login');
             } else {
               Get.snackbar(
                 "Fehler",

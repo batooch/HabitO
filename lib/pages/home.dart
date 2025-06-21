@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/pages/create_habit/view/create_habit_page.dart';
 import 'package:habito/pages/habit_overview/view/home_screen_with_habits.dart';
 import 'package:habito/pages/ori_chat.dart';
@@ -15,15 +16,21 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () => Get.to(CreateHabitPage()),
+              onPressed: () {
+                context.goNamed('create');
+              },
               child: const Text("Gewohnheit erstellen"),
             ),
             ElevatedButton(
-              onPressed: () => Get.to(const OriChat()),
+              onPressed: () {
+                context.goNamed('ori');
+              },
               child: const Text("Ori fragen"),
             ),
             ElevatedButton(
-              onPressed: () => Get.to(const HomeScreenWithHabits()),
+              onPressed: () {
+                context.goNamed('home');
+              },
               child: const Text("Habits zeigen"),
             ),
           ],
