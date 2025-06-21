@@ -12,6 +12,9 @@ class HomeScreenWithHabits extends StatefulWidget {
 class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
   final HabitListController _habitController = HabitListController();
 
+
+  final Map<String, bool> _completedHabits = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +54,31 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                       );
                     }
 
-                    final morningHabits =
-                        habits.where((habit) => habit.morning).toList();
-                    final noonHabits = habits.where((habit) => habit.noon).toList();
-                    final eveningHabits =
-                        habits.where((habit) => habit.evening).toList();
+
+                    List<Habit> filterAndSort(List<Habit> list) {
+                      final active =
+                          list
+                              .where((h) => !(_completedHabits[h.id] ?? false))
+                              .toList();
+                      final done =
+                          list
+                              .where((h) => (_completedHabits[h.id] ?? false))
+                              .toList();
+                      return [
+                        ...active,
+                        ...done,
+                      ];
+                    }
+
+                    List<Habit> morningHabits = filterAndSort(
+                      habits.where((habit) => habit.morning).toList(),
+                    );
+                    List<Habit> noonHabits = filterAndSort(
+                      habits.where((habit) => habit.noon).toList(),
+                    );
+                    List<Habit> eveningHabits = filterAndSort(
+                      habits.where((habit) => habit.evening).toList(),
+                    );
 
                     return ListView(
                       children: [
@@ -106,10 +129,28 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
     );
   }
 
+  //TO-DO: soll das lieber in eine eigene Widget-Klasse??
   Widget buildHabitCard(Habit habit) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ListTile(title: Text(habit.title)),
+    final isCompleted = _completedHabits[habit.id] ?? false;
+
+    return Opacity(
+      opacity: isCompleted ? 0.4 : 1.0,
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 2,
+        child: ListTile(
+          leading: Checkbox(
+            value: isCompleted,
+            onChanged: (newValue) {
+              setState(() {
+                _completedHabits[habit.id!] = newValue ?? false;
+              });
+            },
+          ),
+          title: Text(habit.title),
+        ),
+      ),
     );
   }
 }
