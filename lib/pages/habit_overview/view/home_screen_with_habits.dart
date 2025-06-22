@@ -51,11 +51,9 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                       );
                     }
 
-                    final morningHabits =
-                        habits.where((habit) => habit.morning).toList();
-                    final noonHabits = habits.where((habit) => habit.noon).toList();
-                    final eveningHabits =
-                        habits.where((habit) => habit.evening).toList();
+                    final morningHabits = habits.where((habit) => habit.morning != null).toList();
+                    final noonHabits = habits.where((habit) => habit.noon != null).toList();
+                    final eveningHabits = habits.where((habit) => habit.evening != null).toList();
 
                     return ListView(
                       children: [
