@@ -31,10 +31,26 @@ class Habit {
     return Habit(
       id: documentId,
       title: map['title'] ?? 'Unbenannt',
-      createdAt: DateTime.parse(map['createdAt']),
-      morning: map['morning'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['morning'])) : null,
-      noon: map['noon'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['noon'])) : null,
-      evening: map['evening'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['evening'])) : null,
+      createdAt:
+          map['createdAt'] != null
+              ? DateTime.tryParse(map['createdAt']) ?? DateTime.now()
+              : DateTime.now(),
+      morning:
+          map['morning'] != null && map['morning'] is Map
+              ? TimeOfDayRange.fromMap(
+                Map<String, dynamic>.from(map['morning']),
+              )
+              : null,
+      noon:
+          map['noon'] != null && map['noon'] is Map
+              ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['noon']))
+              : null,
+      evening:
+          map['evening'] != null && map['evening'] is Map
+              ? TimeOfDayRange.fromMap(
+                Map<String, dynamic>.from(map['evening']),
+              )
+              : null,
     );
   }
 }
