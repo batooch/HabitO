@@ -1,38 +1,40 @@
+import 'package:habito/pages/create_habit/model/time_of_day_range.dart';
+
 class Habit {
   final String? id;
   final String title;
   final DateTime createdAt;
-  final bool morning;
-  final bool noon;
-  final bool evening;
+  final TimeOfDayRange? morning;
+  final TimeOfDayRange? noon;
+  final TimeOfDayRange? evening;
 
   Habit({
     required this.id,
     required this.title,
     required this.createdAt,
-    required this.morning,
-    required this.noon,
-    required this.evening,
+    this.morning,
+    this.noon,
+    this.evening,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'title': title,
       'createdAt': createdAt.toIso8601String(),
-      'morning': morning,
-      'noon': noon,
-      'evening': evening,
+      'morning': morning?.toMap(),
+      'noon': noon?.toMap(),
+      'evening': evening?.toMap(),
     };
   }
 
-  factory Habit.fromMap (Map<String, dynamic> map, String documentId) {
+  factory Habit.fromMap(Map<String, dynamic> map, String documentId) {
     return Habit(
-        id: documentId,
-        title: map['title'] ?? 'Unbenannt',
-        createdAt: DateTime.parse(map['createdAt']),
-        morning: map['morning'] ?? false,
-        noon: map['noon'] ?? false,
-        evening: map['evening'] ?? false,
+      id: documentId,
+      title: map['title'] ?? 'Unbenannt',
+      createdAt: DateTime.parse(map['createdAt']),
+      morning: map['morning'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['morning'])) : null,
+      noon: map['noon'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['noon'])) : null,
+      evening: map['evening'] != null ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['evening'])) : null,
     );
   }
 }
