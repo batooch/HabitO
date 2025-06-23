@@ -14,15 +14,16 @@ class HabitListController {
       return [];
     }
     try {
-      final snapshot = await _firestore
-          .collection('users')
-          .doc(uid)
-          .collection('habits')
-          .get();
+      final snapshot =
+          await _firestore
+              .collection('users')
+              .doc(uid)
+              .collection('habits')
+              .get();
 
       final List<Habit> habits = [];
 
-      for(var doc in snapshot.docs) {
+      for (var doc in snapshot.docs) {
         final habitData = doc.data();
         final habitId = doc.id;
         final habit = Habit.fromMap(habitData, habitId);
@@ -33,6 +34,27 @@ class HabitListController {
     } catch (e) {
       print('Fehler beim Abrufen der Habits');
       return [];
+    }
+  }
+
+  Future<void> deleteHabit(String habitId) async {
+    final uid = _auth.currentUser?.uid;
+
+    if (uid == null) {
+      print('Kein Benutzer angemeldet.');
+      return;
+    }
+
+    try {
+      await _firestore
+          .collection('users')
+          .doc(uid)
+          .collection('habits')
+          .doc(habitId)
+          .delete();
+      print('Habit erfolgreich gelöscht.');
+    } catch (e) {
+      print('Fehler beim Löschen des Habits: $e');
     }
   }
 }

@@ -12,6 +12,7 @@ class CreateHabitController {
     final uid = _auth.currentUser?.uid;
     if (uid == null) {
       print("Kein Benutzer angemeldet.");
+      return;
     }
 
     try {
