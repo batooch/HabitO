@@ -29,12 +29,8 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
             children: [
               const Text(
                 'Hallo AAAHelp',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
 
               const SizedBox(height: 20),
               Expanded(
@@ -74,7 +70,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Text("08:00 - 11:00"),
+
                           ...morningHabits.map(buildHabitCard).toList(),
                         ],
                         if (noonHabits.isNotEmpty) ...[
@@ -86,7 +82,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Text("11:00 - 16:00"),
+
                           ...noonHabits.map(buildHabitCard).toList(),
                         ],
                         if (eveningHabits.isNotEmpty) ...[
@@ -98,7 +94,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Text("16:00 - 22:00"),
+
                           ...eveningHabits.map(buildHabitCard).toList(),
                         ],
                       ],
