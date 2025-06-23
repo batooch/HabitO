@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/pages/create_habit/model/habit.dart';
+
 import '../control/habit_list_controller.dart';
+import '../control/user_firstname_controller.dart';
+import '../model/user_first_name.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -11,6 +15,7 @@ class HomeScreenWithHabits extends StatefulWidget {
 
 class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
   final HabitListController _habitController = HabitListController();
+  final UserController _userController = UserController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +27,37 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Hallo Annika",
-                style: TextStyle(
-                  color: Color(0xFF1B3624),
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
+              FutureBuilder<AppUser>(
+                future: _userController.fetchCurrentUserFirstName(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  if (snapshot.hasError) {
+                    return const Text(
+                      "Hallo",
+                      style: TextStyle(
+                        color: Color(0xFF1B3624),
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }
+
+                  final user = snapshot.data!;
+                  print('Geladener Vorname: ${user.firstName}');
+                  return Text(
+                    "Hallo ${user.firstName}",
+                    style: const TextStyle(
+                      color: Color(0xFF1B3624),
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                },
               ),
+
               const SizedBox(height: 20),
               Expanded(
                 child: FutureBuilder<List<Habit>>(
@@ -115,46 +143,53 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 2,
         margin: const EdgeInsets.symmetric(vertical: 8),
-        child: ListTile(
-          title: Text(habit.title),
-        ),
-      ),
-    );
-  }
-  void _showHabitDetailsDialog(Habit habit) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text(habit.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}"),
-            const SizedBox(height: 20),
-            const Text("Möchtest du diese Gewohnheit löschen?"),
-          ],
-        ),
-        actions: [
-          TextButton(
-            child: const Text("Abbrechen"),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          TextButton(
-            child: const Text(
-              "Löschen",
-              style: TextStyle(color: Colors.red),
-            ),
-            onPressed: () async {
-              await _habitController.deleteHabit(habit.id!);
-              Navigator.of(context).pop();
-              setState(() {}); // Refresh
-            },
-          ),
-        ],
+        child: ListTile(title: Text(habit.title)),
       ),
     );
   }
 
+  void _showHabitDetailsDialog(Habit habit) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Text(
+              habit.title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}",
+                ),
+
+                const SizedBox(height: 20),
+                const Text("Möchtest du diese Gewohnheit löschen?"),
+              ],
+            ),
+            actions: [
+              TextButton(
+                child: const Text("Abbrechen"),
+                onPressed: () => context.pop(),
+              ),
+              TextButton(
+                child: const Text(
+                  "Löschen",
+                  style: TextStyle(color: Colors.red),
+                ),
+                onPressed: () async {
+                  await _habitController.deleteHabit(habit.id!);
+                  context.pop();
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+    );
+  }
 }
