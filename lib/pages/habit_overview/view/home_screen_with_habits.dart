@@ -27,36 +27,14 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FutureBuilder<AppUser>(
-                future: _userController.fetchCurrentUserFirstName(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  }
+              const Text(
+                'Hallo AAAHelp',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
 
-                  if (snapshot.hasError) {
-                    return const Text(
-                      "Hallo",
-                      style: TextStyle(
-                        color: Color(0xFF1B3624),
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
-
-                  final user = snapshot.data!;
-                  print('Geladener Vorname: ${user.firstName}');
-                  return Text(
-                    "Hallo ${user.firstName}",
-                    style: const TextStyle(
-                      color: Color(0xFF1B3624),
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                },
-              ),
 
               const SizedBox(height: 20),
               Expanded(
