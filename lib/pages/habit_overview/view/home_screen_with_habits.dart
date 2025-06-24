@@ -28,7 +28,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Hallo AAAHelp',
+                'Deine Gewohnheiten',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
 
