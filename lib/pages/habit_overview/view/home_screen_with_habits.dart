@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habito/pages/create_habit/model/habit.dart';
 
+import '../../../widgets/custom_fab.dart';
 import '../control/habit_list_controller.dart';
 import '../control/user_firstname_controller.dart';
-
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -124,6 +124,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           ),
         ),
       ),
+      floatingActionButton: const CustomFABMenu(),
     );
   }
 
