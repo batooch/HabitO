@@ -25,12 +25,12 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
   }
 
   Future<bool> hasSeenIntro() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getBool('hasSeenIntro') ?? false;
   }
 
   Future<void> setIntroSeen() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('hasSeenIntro', true);
   }
 
