@@ -41,6 +41,8 @@ dependencies:
   go_router: ^15.2.3
   time_range_picker: ^2.3.0
   intl: ^0.20.2
+  flutter_native_splash: ^2.4.6
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -94,3 +96,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_native_splash:
+  color: "#FAF5EE"
+  image: assets/images/LogoHabitO.jpeg
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/IconHabitO.png"

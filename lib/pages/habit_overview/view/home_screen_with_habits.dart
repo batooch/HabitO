@@ -70,7 +70,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.morning?.toString() ?? 'aa',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...morningHabits.map(buildHabitCard).toList(),
                         ],
                         if (noonHabits.isNotEmpty) ...[
@@ -82,7 +88,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.noon?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...noonHabits.map(buildHabitCard).toList(),
                         ],
                         if (eveningHabits.isNotEmpty) ...[
@@ -94,7 +106,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.evening?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...eveningHabits.map(buildHabitCard).toList(),
                         ],
                       ],

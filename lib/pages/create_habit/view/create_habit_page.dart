@@ -81,7 +81,10 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
 
     if (result != null) {
       setState(() {
-        final newRange = TimeOfDayRange(start: result.startTime, end: result.endTime);
+        final newRange = TimeOfDayRange(
+          start: result.startTime,
+          end: result.endTime,
+        );
         switch (label) {
           case 'morning':
             morningRange = newRange;
@@ -107,7 +110,13 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ChoiceChip(
-          label: Text(label[0].toUpperCase() + label.substring(1)),
+          label: Text(
+            label == 'morning'
+                ? 'Morgens'
+                : label == 'noon'
+                ? 'Mittags'
+                : 'Abends',
+          ),
           selected: selected,
           onSelected: (_) => setState(toggle),
         ),
@@ -132,7 +141,9 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Was möchtest du zur Gewohnheit machen?")),
+      appBar: AppBar(
+        title: const Text("Was möchtest du zur Gewohnheit machen?"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
