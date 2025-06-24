@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habito/pages/home.dart';
-import 'package:habito/pages/register.dart';
 import 'package:habito/services/auth_service.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EasyTestLogin extends StatefulWidget {
   const EasyTestLogin({super.key});
@@ -24,6 +22,16 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  Future<bool> hasSeenIntro() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('hasSeenIntro') ?? false;
+  }
+
+  Future<void> setIntroSeen() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('hasSeenIntro', true);
   }
 
   @override
@@ -47,9 +55,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
             TextField(
               controller: passwordController,
               obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Dein Passwort',
-              ),
+              decoration: const InputDecoration(hintText: 'Dein Passwort'),
             ),
             const SizedBox(height: 32),
             Center(
@@ -64,7 +70,14 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                   );
 
                   if (user != null) {
-                    context.goNamed('homeNoHabit');
+                    final seenIntro = await hasSeenIntro();
+
+                    if (!seenIntro) {
+                      await setIntroSeen();
+                      context.goNamed('intro');
+                    } else {
+                      context.goNamed('homeNoHabit');
+                    }
                   } else {
                     Get.snackbar(
                       "Fehler",
@@ -85,7 +98,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                 },
                 child: const Text("Noch keinen Account? Jetzt registrieren"),
               ),
-            )
+            ),
           ],
         ),
       ),

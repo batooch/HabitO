@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:habito/pages/easy_test_login.dart';
+import 'package:habito/pages/intro.dart';
 import 'package:habito/pages/monthly_habit_overview.dart';
 import 'package:habito/pages/ori_chat.dart';
 import 'package:habito/pages/register.dart';
@@ -20,6 +21,11 @@ final GoRouter appRouter = GoRouter(
       path: '/register',
       name: 'register',
       builder: (context, state) => const Register(),
+    ),
+    GoRoute(
+      path: '/intro',
+      name: 'intro',
+      builder: (context, state) => const Intro(),
     ),
 
     ShellRoute(
