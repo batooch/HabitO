@@ -4,7 +4,7 @@ import 'package:habito/pages/create_habit/model/habit.dart';
 
 import '../control/habit_list_controller.dart';
 import '../control/user_firstname_controller.dart';
-import '../model/user_first_name.dart';
+
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -28,7 +28,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Hallo AAAHelp',
+                'Deine Gewohnheiten',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
 
@@ -70,7 +70,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.morning?.toString() ?? 'aa',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...morningHabits.map(buildHabitCard).toList(),
                         ],
                         if (noonHabits.isNotEmpty) ...[
@@ -82,7 +88,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.noon?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...noonHabits.map(buildHabitCard).toList(),
                         ],
                         if (eveningHabits.isNotEmpty) ...[
@@ -94,7 +106,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
+                          Text(
+                            morningHabits.last.evening?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
                           ...eveningHabits.map(buildHabitCard).toList(),
                         ],
                       ],
