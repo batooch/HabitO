@@ -1,12 +1,11 @@
 import 'package:go_router/go_router.dart';
-import 'package:habito/pages/easy_test_login.dart';
-import 'package:habito/pages/intro.dart';
-import 'package:habito/pages/monthly_habit_overview.dart';
-import 'package:habito/pages/ori_chat.dart';
-import 'package:habito/pages/register.dart';
-import '../pages/create_habit/view/create_habit_page.dart';
-import '../pages/habit_overview/view/home_screen_with_habits.dart';
-import '../pages/home.dart';
+import 'package:habito/views/login.dart';
+import 'package:habito/views/intro.dart';
+import 'package:habito/views/monthly_habit_overview.dart';
+import 'package:habito/views/ori_chat.dart';
+import 'package:habito/views/register.dart';
+import '../views/create_habit_page.dart';
+import '../views/home_screen_with_habits.dart';
 import 'navigation_shell.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -35,11 +34,6 @@ final GoRouter appRouter = GoRouter(
           path: '/create',
           name: 'create',
           builder: (context, state) => const CreateHabitPage(),
-        ),
-        GoRoute(
-          path: '/home/no/habit',
-          name: 'homeNoHabit',
-          builder: (context, state) => const Home(),
         ),
         GoRoute(
           path: '/home',

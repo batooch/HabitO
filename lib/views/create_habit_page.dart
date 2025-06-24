@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
-import '../control/create_habit_controller.dart';
-import '../model/habit.dart';
-import '../model/time_of_day_range.dart';
+import '../controllers/create_habit_controller.dart';
+import '../models/habit.dart';
+import '../models/time_of_day_range.dart';
 
 class CreateHabitPage extends StatefulWidget {
   const CreateHabitPage({super.key});
@@ -141,13 +141,15 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Was möchtest du zur Gewohnheit machen?"),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            const Text(
+              "Was möchtest du \nzur Gewohnheit machen?",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
             TextField(
               controller: _habitNew,
               decoration: const InputDecoration(

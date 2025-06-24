@@ -1,4 +1,4 @@
-import 'package:habito/pages/create_habit/model/time_of_day_range.dart';
+import 'package:habito/models/time_of_day_range.dart';
 
 class Habit {
   final String? id;

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:habito/pages/create_habit/model/habit.dart';
+import 'package:habito/models/habit.dart';
 
 class HabitListController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

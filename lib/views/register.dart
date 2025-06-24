@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habito/services/auth_service.dart';
 
-import 'easy_test_login.dart';
+import 'login.dart';
 
 
 class Register extends StatefulWidget {
