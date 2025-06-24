@@ -76,7 +76,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                       await setIntroSeen();
                       context.goNamed('intro');
                     } else {
-                      context.goNamed('homeNoHabit');
+                      context.goNamed('home');
                     }
                   } else {
                     Get.snackbar(

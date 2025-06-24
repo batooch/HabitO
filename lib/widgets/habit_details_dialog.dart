@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../pages/create_habit/model/habit.dart';
-
+import '../models/habit.dart';
 
 class HabitDetailsDialog extends StatelessWidget {
   final Habit habit;
@@ -17,9 +16,7 @@ class HabitDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: Text(
         habit.title,
         style: const TextStyle(fontWeight: FontWeight.bold),
@@ -28,7 +25,9 @@ class HabitDetailsDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}"),
+          Text(
+            "Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}",
+          ),
           const SizedBox(height: 20),
           const Text("Möchtest du diese Gewohnheit löschen?"),
         ],

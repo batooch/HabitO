@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import '../pages/create_habit/model/habit.dart';
+import '../models/habit.dart';
 
 class HabitCard extends StatelessWidget {
   final Habit habit;
   final VoidCallback onTap;
 
-  const HabitCard({
-    super.key,
-    required this.habit,
-    required this.onTap,
-  });
+  const HabitCard({super.key, required this.habit, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +16,7 @@ class HabitCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 2,
         margin: const EdgeInsets.symmetric(vertical: 8),
-        child: ListTile(
-          title: Text(habit.title),
-        ),
+        child: ListTile(title: Text(habit.title)),
       ),
     );
   }
