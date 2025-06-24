@@ -4,7 +4,7 @@ import 'package:habito/pages/intro.dart';
 import 'package:habito/pages/monthly_habit_overview.dart';
 import 'package:habito/pages/ori_chat.dart';
 import 'package:habito/pages/register.dart';
-import '../pages/create_habit/view/create_habit_page.dart';
+import '../view/create_habit_page.dart';
 import '../pages/habit_overview/view/home_screen_with_habits.dart';
 import '../pages/home.dart';
 import 'navigation_shell.dart';

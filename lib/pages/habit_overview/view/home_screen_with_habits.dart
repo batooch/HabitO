@@ -124,7 +124,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           ),
         ),
       ),
-      floatingActionButton: const CustomFABMenu(),
+      floatingActionButton: const CustomFAB(),
     );
   }
 

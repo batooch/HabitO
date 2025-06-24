@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 
-import '../control/create_habit_controller.dart';
-import '../model/habit.dart';
-import '../model/time_of_day_range.dart';
+import '../pages/create_habit/control/create_habit_controller.dart';
+import '../pages/create_habit/model/habit.dart';
+import '../pages/create_habit/model/time_of_day_range.dart';
 
 class CreateHabitPage extends StatefulWidget {
   const CreateHabitPage({super.key});
