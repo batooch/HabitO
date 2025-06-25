@@ -41,11 +41,12 @@ class CustomFAB extends StatelessWidget {
                               'Gewohnheit erstellen',
                               style: TextStyle(color: Colors.white),
                             ),
-                            trailing:
-                            const Icon(Icons.add, color: Colors.white),
+                            trailing: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
                             onTap: () {
-                              Navigator.of(context).pop();
-                              context.pushNamed('create');
+                              context.goNamed('create');
                             },
                           ),
                         ),

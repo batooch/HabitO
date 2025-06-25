@@ -41,7 +41,7 @@ class HabitDetailsDialog extends StatelessWidget {
           child: const Text("Löschen", style: TextStyle(color: Colors.red)),
           onPressed: () {
             onDelete();
-            context.pop();
+            context.goNamed('home');
           },
         ),
       ],

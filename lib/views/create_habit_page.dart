@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:time_range_picker/time_range_picker.dart';
 
 import '../controllers/create_habit_controller.dart';
 import '../models/habit.dart';
 import '../models/time_of_day_range.dart';
+import '../widgets/time_option_chip.dart';
 
 class CreateHabitPage extends StatefulWidget {
   const CreateHabitPage({super.key});
@@ -21,17 +21,17 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
   bool isNoon = false;
   bool isEvening = false;
 
-  TimeOfDayRange morningRange = TimeOfDayRange(
-    start: const TimeOfDay(hour: 6, minute: 0),
-    end: const TimeOfDay(hour: 9, minute: 0),
+  final TimeOfDayRange morningRange = TimeOfDayRange(
+    start: TimeOfDay(hour: 6, minute: 0),
+    end: TimeOfDay(hour: 9, minute: 0),
   );
-  TimeOfDayRange noonRange = TimeOfDayRange(
-    start: const TimeOfDay(hour: 12, minute: 0),
-    end: const TimeOfDay(hour: 14, minute: 0),
+  final TimeOfDayRange noonRange = TimeOfDayRange(
+    start: TimeOfDay(hour: 12, minute: 0),
+    end: TimeOfDay(hour: 14, minute: 0),
   );
-  TimeOfDayRange eveningRange = TimeOfDayRange(
-    start: const TimeOfDay(hour: 18, minute: 0),
-    end: const TimeOfDay(hour: 21, minute: 0),
+  final TimeOfDayRange eveningRange = TimeOfDayRange(
+    start: TimeOfDay(hour: 18, minute: 0),
+    end: TimeOfDay(hour: 21, minute: 0),
   );
 
   @override
@@ -65,79 +65,6 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
     }
   }
 
-  Future<void> _selectTimeRange(String label) async {
-    TimeOfDayRange current = switch (label) {
-      'morning' => morningRange,
-      'noon' => noonRange,
-      'evening' => eveningRange,
-      _ => morningRange,
-    };
-
-    final result = await showTimeRangePicker(
-      context: context,
-      start: current.start,
-      end: current.end,
-    );
-
-    if (result != null) {
-      setState(() {
-        final newRange = TimeOfDayRange(
-          start: result.startTime,
-          end: result.endTime,
-        );
-        switch (label) {
-          case 'morning':
-            morningRange = newRange;
-            break;
-          case 'noon':
-            noonRange = newRange;
-            break;
-          case 'evening':
-            eveningRange = newRange;
-            break;
-        }
-      });
-    }
-  }
-
-  Widget _buildTimeOption({
-    required String label,
-    required bool selected,
-    required VoidCallback toggle,
-    required TimeOfDayRange range,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ChoiceChip(
-          label: Text(
-            label == 'morning'
-                ? 'Morgens'
-                : label == 'noon'
-                ? 'Mittags'
-                : 'Abends',
-          ),
-          selected: selected,
-          onSelected: (_) => setState(toggle),
-        ),
-        if (selected)
-          InkWell(
-            onTap: () => _selectTimeRange(label),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Row(
-                children: [
-                  Text(range.toString(), style: const TextStyle(fontSize: 16)),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.access_time, size: 18),
-                ],
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,24 +85,25 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
               ),
             ),
             const SizedBox(height: 20),
-            _buildTimeOption(
+            TimeOptionChip(
               label: 'morning',
               selected: isMorning,
-              toggle: () => isMorning = !isMorning,
+              toggle: () => setState(() => isMorning = !isMorning),
               range: morningRange,
             ),
-            _buildTimeOption(
+            TimeOptionChip(
               label: 'noon',
               selected: isNoon,
-              toggle: () => isNoon = !isNoon,
+              toggle: () => setState(() => isNoon = !isNoon),
               range: noonRange,
             ),
-            _buildTimeOption(
+            TimeOptionChip(
               label: 'evening',
               selected: isEvening,
-              toggle: () => isEvening = !isEvening,
+              toggle: () => setState(() => isEvening = !isEvening),
               range: eveningRange,
             ),
+
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _handleSubmitHabit,

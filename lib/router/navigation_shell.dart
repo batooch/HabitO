@@ -29,9 +29,9 @@ class NavigationShell extends StatelessWidget {
 
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.add), label: 'Übersicht'),
+          NavigationDestination(icon: Icon(Icons.bar_chart), label: 'Übersicht'),
           NavigationDestination(
-            icon: Icon(Icons.bar_chart),
+            icon: Icon(Icons.add),
             label: 'Erstellen',
           ),
         ],
