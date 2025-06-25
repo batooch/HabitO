@@ -7,7 +7,7 @@ class HabitSuggestions extends StatelessWidget {
 
   Future<List<String>> fetchSuggestions() async {
     final url = Uri.parse(
-        "https://demo-backend-1066691636843.europe-west1.run.app/chat/habits");
+        "https://c926-2a01-599-b07-11b3-7096-9ff8-5447-c6.ngrok-free.app/chat/habits");
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
