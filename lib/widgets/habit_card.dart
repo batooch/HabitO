@@ -16,7 +16,15 @@ class HabitCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 2,
         margin: const EdgeInsets.symmetric(vertical: 8),
-        child: ListTile(title: Text(habit.title)),
+        child: ListTile(
+          leading: Checkbox(
+            value: false,
+            onChanged: (bool? value) {
+              print('Checkbox für "${habit.title}" geklickt');
+            },
+          ),
+          title: Text(habit.title),
+        ),
       ),
     );
   }
