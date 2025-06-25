@@ -6,6 +6,7 @@ import '../widgets/custom_fab.dart';
 import '../controllers/habit_list_controller.dart';
 import '../widgets/habit_card.dart';
 import '../widgets/habit_details_dialog.dart';
+import '../widgets/habit_time_section.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -62,74 +63,27 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
 
                     return ListView(
                       children: [
-                        if (morningHabits.isNotEmpty) ...[
-                          const Text(
-                            "Morgens",
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        if (morningHabits.isNotEmpty)
+                          HabitTimeSection(
+                            title: 'Morgens',
+                            timeText: '06:00 – 09:00',
+                            habits: morningHabits,
+                            onHabitTap: _showHabitDetailsDialog,
                           ),
-                          const Text(
-                            '06:00 – 09:00',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                        if (noonHabits.isNotEmpty)
+                          HabitTimeSection(
+                            title: 'Mittags',
+                            timeText: '12:00 – 14:00',
+                            habits: noonHabits,
+                            onHabitTap: _showHabitDetailsDialog,
                           ),
-
-                          ...morningHabits
-                              .map(
-                                (habit) => HabitCard(
-                                  habit: habit,
-                                  onTap: () => _showHabitDetailsDialog(habit),
-                                ),
-                              )
-                              .toList(),
-                        ],
-                        if (noonHabits.isNotEmpty) ...[
-                          const SizedBox(height: 16),
-                          const Text(
-                            "Mittags",
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        if (eveningHabits.isNotEmpty)
+                          HabitTimeSection(
+                            title: 'Abends',
+                            timeText: '18:00 – 21:00',
+                            habits: eveningHabits,
+                            onHabitTap: _showHabitDetailsDialog,
                           ),
-                          const Text(
-                            '12:00 – 14:00',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-
-                          ...noonHabits
-                              .map(
-                                (habit) => HabitCard(
-                                  habit: habit,
-                                  onTap: () => _showHabitDetailsDialog(habit),
-                                ),
-                              )
-                              .toList(),
-                        ],
-                        if (eveningHabits.isNotEmpty) ...[
-                          const SizedBox(height: 16),
-                          const Text(
-                            "Abends",
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Text(
-                            '18:00 – 21:00',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-
-                          ...eveningHabits
-                              .map(
-                                (habit) => HabitCard(
-                                  habit: habit,
-                                  onTap: () => _showHabitDetailsDialog(habit),
-                                ),
-                              )
-                              .toList(),
-                        ],
                       ],
                     );
                   },
@@ -139,9 +93,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           ),
         ),
       ),
-      floatingActionButton: const CustomFAB(
-
-      ),
+      floatingActionButton: const CustomFAB(),
     );
   }
 
