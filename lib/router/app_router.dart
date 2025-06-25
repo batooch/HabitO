@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:habito/views/login.dart';
 import 'package:habito/views/intro.dart';
-import 'package:habito/views/monthly_habit_overview.dart';
+import 'package:habito/views/habit_overview.dart';
 import 'package:habito/views/ori_chat.dart';
 import 'package:habito/views/register.dart';
-import '../views/create_habit_page.dart';
-import '../views/home_screen_with_habits.dart';
+import '../views/create_habit.dart';
+import '../views/home.dart';
 import 'navigation_shell.dart';
 
 final GoRouter appRouter = GoRouter(

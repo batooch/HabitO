@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ori_light.dart';
+import '../widgets/ori_light.dart';
 
 class OriChat extends StatelessWidget {
   const OriChat({super.key});
