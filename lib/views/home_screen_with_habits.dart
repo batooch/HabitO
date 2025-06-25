@@ -4,7 +4,8 @@ import 'package:habito/models/habit.dart';
 
 import '../widgets/custom_fab.dart';
 import '../controllers/habit_list_controller.dart';
-import '../controllers/user_firstname_controller.dart';
+import '../widgets/habit_card.dart';
+import '../widgets/habit_details_dialog.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -15,7 +16,6 @@ class HomeScreenWithHabits extends StatefulWidget {
 
 class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
   final HabitListController _habitController = HabitListController();
-  final UserController _userController = UserController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +70,19 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            morningHabits.last.morning?.toString() ?? 'aa',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                          const Text(
+                            '06:00 – 09:00',
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
-                          ...morningHabits.map(buildHabitCard).toList(),
+
+                          ...morningHabits
+                              .map(
+                                (habit) => HabitCard(
+                                  habit: habit,
+                                  onTap: () => _showHabitDetailsDialog(habit),
+                                ),
+                              )
+                              .toList(),
                         ],
                         if (noonHabits.isNotEmpty) ...[
                           const SizedBox(height: 16),
@@ -88,14 +93,19 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            morningHabits.last.noon?.toString() ?? '',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                          const Text(
+                            '12:00 – 14:00',
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
-                          ...noonHabits.map(buildHabitCard).toList(),
+
+                          ...noonHabits
+                              .map(
+                                (habit) => HabitCard(
+                                  habit: habit,
+                                  onTap: () => _showHabitDetailsDialog(habit),
+                                ),
+                              )
+                              .toList(),
                         ],
                         if (eveningHabits.isNotEmpty) ...[
                           const SizedBox(height: 16),
@@ -106,14 +116,19 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            morningHabits.last.evening?.toString() ?? '',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
+                          const Text(
+                            '18:00 – 21:00',
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
-                          ...eveningHabits.map(buildHabitCard).toList(),
+
+                          ...eveningHabits
+                              .map(
+                                (habit) => HabitCard(
+                                  habit: habit,
+                                  onTap: () => _showHabitDetailsDialog(habit),
+                                ),
+                              )
+                              .toList(),
                         ],
                       ],
                     );
@@ -124,19 +139,8 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
           ),
         ),
       ),
-      floatingActionButton: const CustomFAB(),
-    );
-  }
+      floatingActionButton: const CustomFAB(
 
-  Widget buildHabitCard(Habit habit) {
-    return GestureDetector(
-      onTap: () => _showHabitDetailsDialog(habit),
-      child: Card(
-        color: const Color(0xFFF2F9F5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 2,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        child: ListTile(title: Text(habit.title)),
       ),
     );
   }
@@ -145,43 +149,13 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
     showDialog(
       context: context,
       builder:
-          (context) => AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            title: Text(
-              habit.title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}",
-                ),
-
-                const SizedBox(height: 20),
-                const Text("Möchtest du diese Gewohnheit löschen?"),
-              ],
-            ),
-            actions: [
-              TextButton(
-                child: const Text("Abbrechen"),
-                onPressed: () => context.pop(),
-              ),
-              TextButton(
-                child: const Text(
-                  "Löschen",
-                  style: TextStyle(color: Colors.red),
-                ),
-                onPressed: () async {
-                  await _habitController.deleteHabit(habit.id!);
-                  context.pop();
-                  setState(() {});
-                },
-              ),
-            ],
+          (context) => HabitDetailsDialog(
+            habit: habit,
+            onDelete: () async {
+              await _habitController.deleteHabit(habit.id!);
+              context.pop();
+              setState(() {});
+            },
           ),
     );
   }
