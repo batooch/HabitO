@@ -1,17 +1,26 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import '../controllers/habit_list_controller.dart';
 
 class HabitSuggestions extends StatelessWidget {
   const HabitSuggestions({super.key});
 
   Future<List<String>> fetchSuggestions() async {
+    final controller = HabitListController();
+
+    final habits = await controller.fetchHabits();
+    final titles = habits.map((h) => h.title).toList();
+
     final url = Uri.parse(
-        "https://c926-2a01-599-b07-11b3-7096-9ff8-5447-c6.ngrok-free.app/chat/habits");
+      "https://c160-2a01-599-b07-11b3-7096-9ff8-5447-c6.ngrok-free.app/chat/habits",
+    );
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(["wasser trinken"]),
+      body: jsonEncode(titles),
     );
 
     if (response.statusCode == 200) {
@@ -28,7 +37,13 @@ class HabitSuggestions extends StatelessWidget {
       future: fetchSuggestions(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(
+            child: SizedBox(
+              height: 40,
+              width: 40,
+              child: CircularProgressIndicator(strokeWidth: 3),
+            ),
+          );
         } else if (snapshot.hasError) {
           return Text('Fehler: ${snapshot.error}');
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -49,11 +64,10 @@ class HabitSuggestions extends StatelessWidget {
               elevation: 2,
               child: ListTile(
                 contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 8),
-                title: Text(
-                  habits[index],
-                  style: TextStyle(fontSize: 16),
+                  horizontal: 16,
+                  vertical: 8,
                 ),
+                title: Text(habits[index], style: TextStyle(fontSize: 16)),
               ),
             );
           },
