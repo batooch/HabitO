@@ -15,7 +15,7 @@ class HabitSuggestions extends StatelessWidget {
     final titles = habits.map((h) => h.title).toList();
 
     final url = Uri.parse(
-      "https://c160-2a01-599-b07-11b3-7096-9ff8-5447-c6.ngrok-free.app/chat/habits",
+      "https://66c8-2a02-8071-8282-e060-f029-45e-d26a-e11a.ngrok-free.app/chat/habits",
     );
     final response = await http.post(
       url,
