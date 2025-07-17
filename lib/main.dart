@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habito/bloc/habit/habit_bloc.dart';
+import 'package:habito/repository/habit_repository.dart';
 import 'package:habito/router/app_router.dart';
+import 'package:habito/services/auth_service.dart';
 
+import 'bloc/auth/auth_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(create: (context) => AuthBloc(AuthService())),
+        BlocProvider<HabitBloc>(
+          create: (context) => HabitBloc(HabitRepository()),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
