@@ -32,6 +32,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         await habitRepository.deleteHabit(event.habitId);
         final habits = await habitRepository.fetchHabits();
         emit(HabitLoaded(habits));
+        emit(HabitDeleteSuccess());
       } catch (e) {
         emit(HabitError("Fehler beim Löschen"));
       }

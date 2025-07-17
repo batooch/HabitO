@@ -12,6 +12,8 @@ class HabitLoaded extends HabitState {
   HabitLoaded(this.habits);
 }
 
+class HabitDeleteSuccess extends HabitState {}
+
 class HabitError extends HabitState {
   final String message;
 
