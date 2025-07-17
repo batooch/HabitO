@@ -10,7 +10,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginRequested>((event, emit) async {
       emit(AuthLoading());
       try {
-        final uid = await authService.loginUser(event.email, event.password);
+        final uid = await authService.loginUser(
+          email: event.email,
+          password: event.password,
+        );
+
         emit(Authenticated(uid));
       } catch (e) {
         emit(AuthError('Login fehlgeschlagen: ${e.toString()}'));
