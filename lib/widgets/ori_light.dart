@@ -1,19 +1,16 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
-import '../controllers/habit_list_controller.dart';
+import '../bloc/habit/habit_bloc.dart';
+import '../bloc/habit/habit_state.dart';
 
 class HabitSuggestions extends StatelessWidget {
   const HabitSuggestions({super.key});
 
-  Future<List<String>> fetchSuggestions() async {
-    final controller = HabitListController();
-
-    final habits = await controller.fetchHabits();
-    final titles = habits.map((h) => h.title).toList();
-
+  Future<List<String>> fetchSuggestions(List<String> titles) async {
     final url = Uri.parse(
       "https://66c8-2a02-8071-8282-e060-f029-45e-d26a-e11a.ngrok-free.app/chat/habits",
     );
@@ -33,45 +30,65 @@ class HabitSuggestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<String>>(
-      future: fetchSuggestions(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: SizedBox(
-              height: 40,
-              width: 40,
-              child: CircularProgressIndicator(strokeWidth: 3),
-            ),
+    return BlocBuilder<HabitBloc, HabitState>(
+      builder: (context, state) {
+        if (state is HabitLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is HabitLoaded) {
+          final titles = state.habits.map((h) => h.title).toList();
+
+          return FutureBuilder<List<String>>(
+            future: fetchSuggestions(titles),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(strokeWidth: 3),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text('Fehler: ${snapshot.error}');
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Text('Keine Vorschläge gefunden.');
+              }
+
+              final suggestions = snapshot.data!;
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: suggestions.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 8,
+                    ),
+                    color: Colors.green.shade50,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      title: Text(
+                        suggestions[index],
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           );
-        } else if (snapshot.hasError) {
-          return Text('Fehler: ${snapshot.error}');
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Text('Keine Vorschläge gefunden.');
+        } else if (state is HabitError) {
+          return Text('Fehler: ${state.message}');
         }
 
-        final habits = snapshot.data!;
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: habits.length,
-          itemBuilder: (context, index) {
-            return Card(
-              margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-              color: Colors.green.shade50,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 2,
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                title: Text(habits[index], style: TextStyle(fontSize: 16)),
-              ),
-            );
-          },
-        );
+        return const SizedBox.shrink();
       },
     );
   }

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habito/services/auth_service.dart';
-
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
-import 'login.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -36,6 +33,10 @@ class _RegisterState extends State<Register> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Authenticated) {
+          firstNameController.clear();
+          lastNameController.clear();
+          emailController.clear();
+          passwordController.clear();
           context.goNamed('login');
         } else if (state is AuthError) {
           Get.snackbar(

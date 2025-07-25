@@ -42,7 +42,6 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
       listener: (context, state) async {
         if (state is Authenticated) {
           final seenIntro = await hasSeenIntro();
-
           if (!seenIntro) {
             await setIntroSeen();
             context.goNamed('intro');
@@ -81,16 +80,37 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
               ),
               const SizedBox(height: 32),
               Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    final email = emailController.text.trim();
-                    final password = passwordController.text.trim();
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    final isLoading = state is AuthLoading;
 
-                    context.read<AuthBloc>().add(
-                      LoginRequested(email: email, password: password),
+                    return ElevatedButton(
+                      onPressed:
+                          isLoading
+                              ? null
+                              : () {
+                                final email = emailController.text.trim();
+                                final password = passwordController.text.trim();
+                                context.read<AuthBloc>().add(
+                                  LoginRequested(
+                                    email: email,
+                                    password: password,
+                                  ),
+                                );
+                              },
+                      child:
+                          isLoading
+                              ? const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                              : const Text('Login'),
                     );
                   },
-                  child: const Text('Login'),
                 ),
               ),
               const SizedBox(height: 32),

@@ -12,10 +12,12 @@ class HabitLoaded extends HabitState {
   HabitLoaded(this.habits);
 }
 
-class HabitDeleteSuccess extends HabitState {}
-
 class HabitError extends HabitState {
   final String message;
 
   HabitError(this.message);
 }
+
+class HabitAddSuccess extends HabitState {}
+
+class HabitDeleteSuccess extends HabitState {}

@@ -28,15 +28,12 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<HabitBloc, HabitState>(
-      listenWhen: (previous, current) => current is HabitDeleteSuccess,
+      listenWhen: (previous, current) => current is HabitError,
       listener: (context, state) {
-        if (state is HabitDeleteSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Habit erfolgreich gelöscht.'),
-              duration: Duration(seconds: 3),
-            ),
-          );
+        if (state is HabitError) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       child: Scaffold(
@@ -130,6 +127,12 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
             onDelete: () async {
               context.read<HabitBloc>().add(DeleteHabit(habit.id!));
               context.pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Habit erfolgreich gelöscht.'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
             },
           ),
     );

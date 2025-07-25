@@ -62,7 +62,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
   Widget build(BuildContext context) {
     return BlocListener<HabitBloc, HabitState>(
       listener: (context, state) {
-        if (state is HabitLoaded) {
+        if (state is HabitAddSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Habit erfolgreich erstellt!")),
           );
@@ -74,7 +74,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
             isEvening = false;
           });
 
-          Future.delayed(const Duration(seconds: 3), () {
+          Future.delayed(const Duration(seconds: 2), () {
             context.goNamed('home');
           });
         }
