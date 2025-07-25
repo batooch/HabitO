@@ -37,7 +37,7 @@ class Intro extends StatelessWidget {
                 const SizedBox(height: 60),
                 ElevatedButton(
                   onPressed: () {
-                    context.goNamed('homeNoHabit');
+                    context.goNamed('home');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF173B2F),
