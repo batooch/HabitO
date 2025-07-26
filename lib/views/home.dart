@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,10 +7,14 @@ import 'package:habito/models/habit.dart';
 import '../bloc/habit/habit_bloc.dart';
 import '../bloc/habit/habit_event.dart';
 import '../bloc/habit/habit_state.dart';
+import '../bloc/user/user_bloc.dart';
+import '../bloc/user/user_event.dart';
 import '../widgets/custom_fab.dart';
 
 import '../widgets/habit_details_dialog.dart';
 import '../widgets/habit_time_section.dart';
+import '../widgets/logout_button.dart';
+import '../widgets/user_menu.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
@@ -23,6 +28,11 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
   void initState() {
     super.initState();
     context.read<HabitBloc>().add(LoadHabits());
+
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid != null) {
+      context.read<UserBloc>().add(LoadUserData(uid));
+    }
   }
 
   @override
@@ -38,6 +48,12 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
       },
       child: Scaffold(
         backgroundColor: const Color(0xFFFAF5EE),
+        appBar: AppBar(
+          elevation: 0,
+          actions: const [
+            Padding(padding: EdgeInsets.only(right: 12.0), child: UserMenu()),
+          ],
+        ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),

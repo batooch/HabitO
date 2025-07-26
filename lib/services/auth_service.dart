@@ -79,4 +79,10 @@ class AuthService {
   Future<void> logout() async {
     await _auth.signOut();
   }
+
+  Future<Map<String, dynamic>> getUserData(String uid) async {
+    final doc = await _firestore.collection('users').doc(uid).get();
+    if (!doc.exists) throw Exception('Benutzer nicht gefunden');
+    return doc.data()!;
+  }
 }

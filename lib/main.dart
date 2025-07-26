@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/habit/habit_bloc.dart';
+import 'package:habito/bloc/user/user_bloc.dart';
 import 'package:habito/repository/habit_repository.dart';
 import 'package:habito/router/app_router.dart';
 import 'package:habito/services/auth_service.dart';
@@ -21,6 +22,7 @@ void main() async {
         BlocProvider<HabitBloc>(
           create: (context) => HabitBloc(HabitRepository()),
         ),
+        BlocProvider<UserBloc>(create: (context) => UserBloc(AuthService())),
       ],
       child: const MyApp(),
     ),
