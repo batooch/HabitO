@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
+import '../validators/auth_input_validators.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -18,6 +19,10 @@ class _RegisterState extends State<Register> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController =
+      TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -25,7 +30,16 @@ class _RegisterState extends State<Register> {
     lastNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    repeatPasswordController.dispose();
     super.dispose();
+  }
+
+  void _clearFields() {
+    firstNameController.clear();
+    lastNameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    repeatPasswordController.clear();
   }
 
   @override
@@ -33,10 +47,7 @@ class _RegisterState extends State<Register> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Authenticated) {
-          firstNameController.clear();
-          lastNameController.clear();
-          emailController.clear();
-          passwordController.clear();
+          _clearFields();
           context.goNamed('login');
         } else if (state is AuthError) {
           Get.snackbar(
@@ -51,59 +62,108 @@ class _RegisterState extends State<Register> {
         appBar: AppBar(title: const Text("Registrieren")),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Name:"),
-              TextField(
-                controller: firstNameController,
-                decoration: const InputDecoration(hintText: "Dein Vorname"),
-              ),
-              const SizedBox(height: 16),
-              const Text("Nachname:"),
-              TextField(
-                controller: lastNameController,
-                decoration: const InputDecoration(hintText: "Dein Nachname"),
-              ),
-              const SizedBox(height: 16),
-              const Text("E-Mail:"),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: "Deine E-Mail-Adresse",
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                const Text("Name:"),
+                TextFormField(
+                  controller: firstNameController,
+                  decoration: const InputDecoration(hintText: "Dein Vorname"),
+                  validator: AuthInputValidators.validateName,
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Text("Passwort"),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  hintText: "Wähle ein Passwort",
+                const SizedBox(height: 16),
+                const Text("Nachname:"),
+                TextFormField(
+                  controller: lastNameController,
+                  decoration: const InputDecoration(hintText: "Dein Nachname"),
+                  validator: AuthInputValidators.validateName,
                 ),
-              ),
-              const SizedBox(height: 32),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    final email = emailController.text.trim();
-                    final password = passwordController.text.trim();
-                    final firstName = firstNameController.text.trim();
-                    final lastName = lastNameController.text.trim();
-
-                    context.read<AuthBloc>().add(
-                      RegisterRequested(
-                        email: email,
-                        password: password,
-                        firstName: firstName,
-                        lastName: lastName,
+                const SizedBox(height: 16),
+                const Text("E-Mail:"),
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    hintText: "Deine E-Mail-Adresse",
+                  ),
+                  validator: AuthInputValidators.validateEmail,
+                ),
+                const SizedBox(height: 16),
+                const Text("Passwort:"),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: "Wähle ein Passwort",
+                  ),
+                  validator: AuthInputValidators.validatePasswordRegister,
+                ),
+                const SizedBox(height: 16),
+                const Text("Passwort wiederholen:"),
+                TextFormField(
+                  controller: repeatPasswordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: "Passwort bestätigen",
+                  ),
+                  validator:
+                      (value) => AuthInputValidators.validatePasswordRepeat(
+                        passwordController.text,
+                        value ?? '',
                       ),
-                    );
-                  },
-                  child: const Text("Registrieren"),
                 ),
-              ),
-            ],
+                const SizedBox(height: 32),
+                Center(
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      final isLoading = state is AuthLoading;
+                      return ElevatedButton(
+                        onPressed:
+                            isLoading
+                                ? null
+                                : () {
+                                  if (_formKey.currentState!.validate()) {
+                                    context.read<AuthBloc>().add(
+                                      RegisterRequested(
+                                        email: emailController.text.trim(),
+                                        password:
+                                            passwordController.text.trim(),
+                                        firstName:
+                                            firstNameController.text.trim(),
+                                        lastName:
+                                            lastNameController.text.trim(),
+                                      ),
+                                    );
+                                  }
+                                },
+                        child:
+                            isLoading
+                                ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                                : const Text("Registrieren"),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      context.goNamed('login');
+                    },
+                    child: const Text(
+                      "Bereits einen Account? Jetzt einloggen.",
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
