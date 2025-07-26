@@ -38,19 +38,42 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    UserCredential result = await _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    final user = result.user;
-    if (user == null) {
-      throw FirebaseAuthException(
-        code: 'login-failed',
-        message: 'Login returned null.',
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-    }
+      final user = result.user;
+      if (user == null) {
+        throw FirebaseAuthException(
+          code: 'login-failed',
+          message: 'Login returned null.',
+        );
+      }
 
-    return user.uid;
+      return user.uid;
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'user-not-found':
+          throw Exception('Diese E-Mail ist nicht registriert');
+        case 'wrong-password':
+          throw Exception('Falsches Passwort');
+        case 'invalid-email':
+          throw Exception('Ungültige E-Mail-Adresse');
+        case 'invalid-credential':
+          throw Exception('Falsche E-Mail/Passwort-Kombination');
+        case 'too-many-requests':
+          throw Exception(
+            'Zu viele Versuche. Bitte warte kurz und versuche es erneut.',
+          );
+        default:
+          throw Exception(
+            'Login fehlgeschlagen: Bitte überprüfe deine Eingaben.',
+          );
+      }
+    } catch (e) {
+      throw Exception('Unbekannter Fehler beim Login: ${e.toString()}');
+    }
   }
 
   Future<void> logout() async {

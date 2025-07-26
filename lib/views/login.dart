@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
+import '../validators/auth_input_validators.dart';
 
 class EasyTestLogin extends StatefulWidget {
   const EasyTestLogin({super.key});
@@ -16,6 +17,7 @@ class EasyTestLogin extends StatefulWidget {
 }
 
 class _EasyTestLoginState extends State<EasyTestLogin> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -27,12 +29,12 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
   }
 
   Future<bool> hasSeenIntro() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('hasSeenIntro') ?? false;
   }
 
   Future<void> setIntroSeen() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('hasSeenIntro', true);
   }
 
@@ -49,11 +51,8 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
             context.goNamed('home');
           }
         } else if (state is AuthError) {
-          Get.snackbar(
-            "Fehler",
-            state.message,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
           );
         }
       },
@@ -61,68 +60,80 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
         appBar: AppBar(title: const Text('Login')),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('E-Mail:'),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: 'Deine E-Mail-Adresse',
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('E-Mail:'),
+                TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    hintText: 'Deine E-Mail-Adresse',
+                  ),
+                  validator: AuthInputValidators.validateEmail,
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Text('Passwort:'),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(hintText: 'Dein Passwort'),
-              ),
-              const SizedBox(height: 32),
-              Center(
-                child: BlocBuilder<AuthBloc, AuthState>(
-                  builder: (context, state) {
-                    final isLoading = state is AuthLoading;
+                const SizedBox(height: 16),
+                const Text('Passwort:'),
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(hintText: 'Dein Passwort'),
+                  validator: AuthInputValidators.validatePasswordLogin,
+                ),
+                const SizedBox(height: 32),
+                Center(
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      final isLoading = state is AuthLoading;
 
-                    return ElevatedButton(
-                      onPressed:
-                          isLoading
-                              ? null
-                              : () {
-                                final email = emailController.text.trim();
-                                final password = passwordController.text.trim();
-                                context.read<AuthBloc>().add(
-                                  LoginRequested(
-                                    email: email,
-                                    password: password,
+                      return ElevatedButton(
+                        onPressed:
+                            isLoading
+                                ? null
+                                : () {
+                                  if (_formKey.currentState!.validate()) {
+                                    final email = emailController.text.trim();
+                                    final password =
+                                        passwordController.text.trim();
+
+                                    context.read<AuthBloc>().add(
+                                      LoginRequested(
+                                        email: email,
+                                        password: password,
+                                      ),
+                                    );
+                                  }
+                                },
+                        child:
+                            isLoading
+                                ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
                                   ),
-                                );
-                              },
-                      child:
-                          isLoading
-                              ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Colors.white,
-                                ),
-                              )
-                              : const Text('Login'),
-                    );
-                  },
+                                )
+                                : const Text('Login'),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    context.goNamed('register');
-                  },
-                  child: const Text("Noch keinen Account? Jetzt registrieren"),
+                const SizedBox(height: 32),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      context.goNamed('register');
+                    },
+                    child: const Text(
+                      "Noch keinen Account? Jetzt registrieren.",
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

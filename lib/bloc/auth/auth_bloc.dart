@@ -14,10 +14,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           email: event.email,
           password: event.password,
         );
-
         emit(Authenticated(uid));
       } catch (e) {
-        emit(AuthError('Login fehlgeschlagen: ${e.toString()}'));
+        emit(AuthError(e.toString().replaceFirst('Exception: ', '')));
       }
     });
 
@@ -32,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
         emit(Authenticated(uid));
       } catch (e) {
-        emit(AuthError('Registrierung fehlgeschlagen: ${e.toString()}'));
+        emit(AuthError(e.toString().replaceFirst('Exception: ', '')));
       }
     });
 

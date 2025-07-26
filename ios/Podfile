@@ -35,10 +35,7 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
 
-  # ✅ Firebase Firestore as precompiled pod (fix for long build times)
-  pod 'FirebaseFirestore',
-    :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git',
-    :tag => '11.13.0' # Match your Firebase SDK version
+
 
   # Install Flutter pods
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))

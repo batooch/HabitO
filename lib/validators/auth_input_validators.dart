@@ -19,7 +19,7 @@ class AuthInputValidators {
     return null;
   }
 
-  static String? validatePassword(String? password) {
+  static String? validatePasswordRegister(String? password) {
     if (password == null || password.isEmpty) {
       return 'Passwort darf nicht leer sein';
     }
@@ -32,7 +32,16 @@ class AuthInputValidators {
     return null;
   }
 
-  static String? validatePasswordRepeat(String? password, String? repeatPassword) {
+  static String? validatePasswordLogin(String? password) {
+    if (password == null || password.isEmpty) {
+      return 'Passwort darf nicht leer sein';
+    }
+  }
+
+  static String? validatePasswordRepeat(
+    String? password,
+    String? repeatPassword,
+  ) {
     if (repeatPassword == null || repeatPassword.isEmpty) {
       return 'Bitte wiederhole dein Passwort';
     }
