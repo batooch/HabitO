@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:habito/bloc/habit/habit_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
@@ -50,6 +51,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
+      supportedLocales: const [
+        Locale('de'), // Deutsch
+      ],
+      locale: const Locale('de'),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }
