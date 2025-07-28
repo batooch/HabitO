@@ -10,11 +10,12 @@ class HabitRepository {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');
 
-    final snapshot = await _firestore
-        .collection('users')
-        .doc(uid)
-        .collection('habits')
-        .get();
+    final snapshot =
+        await _firestore
+            .collection('users')
+            .doc(uid)
+            .collection('habits')
+            .get();
 
     return snapshot.docs
         .map((doc) => Habit.fromMap(doc.data(), doc.id))
@@ -42,5 +43,14 @@ class HabitRepository {
         .collection('habits')
         .doc(habitId)
         .delete();
+  }
+
+  Future<void> updateHabitDoneStatus(String habitId, bool isDone) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('habits')
+        .doc(habitId)
+        .update({'done': isDone});
   }
 }

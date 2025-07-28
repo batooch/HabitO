@@ -37,5 +37,16 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         emit(HabitError("Fehler beim Löschen"));
       }
     });
+
+    on<ToggleHabitDone>((event, emit) async {
+      try {
+        await habitRepository.updateHabitDoneStatus(event.habitId, event.isDone);
+        final habits = await habitRepository.fetchHabits();
+        emit(HabitLoaded(habits));
+      } catch (e) {
+        emit(HabitError("Fehler beim Aktualisieren des Habit-Status"));
+      }
+    });
+
   }
 }
