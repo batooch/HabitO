@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../bloc/auth/auth_bloc.dart';
-import '../bloc/auth/auth_event.dart';
-import '../bloc/auth/auth_state.dart';
-import '../validators/auth_input_validators.dart';
+import 'package:habito/bloc/auth/auth_bloc.dart';
+import 'package:habito/bloc/auth/auth_event.dart';
+import 'package:habito/bloc/auth/auth_state.dart';
+import 'package:habito/validators/auth_input_validators.dart';
 
 class EasyTestLogin extends StatefulWidget {
   const EasyTestLogin({super.key});
@@ -128,7 +127,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                       context.goNamed('register');
                     },
                     child: const Text(
-                      "Noch keinen Account? Jetzt registrieren.",
+                      'Noch keinen Account? Jetzt registrieren.',
                     ),
                   ),
                 ),

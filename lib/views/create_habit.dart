@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../bloc/habit/habit_bloc.dart';
-import '../bloc/habit/habit_event.dart';
-import '../bloc/habit/habit_state.dart';
-import '../bloc/habit_time_range/time_range_bloc.dart';
-import '../bloc/habit_time_range/time_range_state.dart';
-import '../models/habit.dart';
-import '../widgets/time_option_chip.dart';
+import 'package:habito/bloc/habit/habit_bloc.dart';
+import 'package:habito/bloc/habit/habit_event.dart';
+import 'package:habito/bloc/habit/habit_state.dart';
+import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
+import 'package:habito/bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/models/habit.dart';
+import 'package:habito/widgets/time_option_chip.dart';
 
 class CreateHabitPage extends StatefulWidget {
   const CreateHabitPage({super.key});
@@ -50,7 +50,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
       listener: (context, state) {
         if (state is HabitAddSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Habit erfolgreich erstellt!")),
+            const SnackBar(content: Text('Habit erfolgreich erstellt!')),
           );
           _habitNew.clear();
           selectedPeriods.clear();
@@ -73,14 +73,14 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
               return Column(
                 children: [
                   const Text(
-                    "Was möchtest du \nzur Gewohnheit machen?",
+                    'Was möchtest du \nzur Gewohnheit machen?',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 20),
                   TextField(
                     controller: _habitNew,
                     decoration: const InputDecoration(
-                      labelText: "Gewohnheit erstellen",
+                      labelText: 'Gewohnheit erstellen',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -99,11 +99,11 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
                         });
                       },
                     );
-                  }).toList(),
+                  }),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => _handleSubmitHabit(timeState),
-                    child: const Text("Erstellen"),
+                    child: const Text('Erstellen'),
                   ),
                 ],
               );

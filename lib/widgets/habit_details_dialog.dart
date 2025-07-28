@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../models/habit.dart';
+import 'package:habito/models/habit.dart';
 
 class HabitDetailsDialog extends StatelessWidget {
   final Habit habit;
@@ -29,16 +29,16 @@ class HabitDetailsDialog extends StatelessWidget {
             "Erstellt am: ${habit.createdAt.toLocal().toString().split(' ')[0]}",
           ),
           const SizedBox(height: 20),
-          const Text("Möchtest du diese Gewohnheit löschen?"),
+          const Text('Möchtest du diese Gewohnheit löschen?'),
         ],
       ),
       actions: [
         TextButton(
-          child: const Text("Abbrechen"),
+          child: const Text('Abbrechen'),
           onPressed: () => context.pop(),
         ),
         TextButton(
-          child: const Text("Löschen", style: TextStyle(color: Colors.red)),
+          child: const Text('Löschen', style: TextStyle(color: Colors.red)),
           onPressed: () {
             onDelete();
             context.goNamed('home');

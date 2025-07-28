@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/user/user_event.dart';
 import 'package:habito/bloc/user/user_state.dart';
 
-import '../../services/auth_service.dart';
+import 'package:habito/services/auth_service.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final AuthService authService;

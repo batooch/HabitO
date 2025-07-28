@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import '../bloc/auth/auth_bloc.dart';
-import '../bloc/auth/auth_event.dart';
-import '../bloc/auth/auth_state.dart';
-import '../validators/auth_input_validators.dart';
+import 'package:habito/bloc/auth/auth_bloc.dart';
+import 'package:habito/bloc/auth/auth_event.dart';
+import 'package:habito/bloc/auth/auth_state.dart';
+import 'package:habito/validators/auth_input_validators.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> {
           context.goNamed('login');
         } else if (state is AuthError) {
           Get.snackbar(
-            "Fehler",
+            'Fehler',
             state.message,
             backgroundColor: Colors.red,
             colorText: Colors.white,
@@ -59,52 +59,52 @@ class _RegisterState extends State<Register> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text("Registrieren")),
+        appBar: AppBar(title: const Text('Registrieren')),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: ListView(
               children: [
-                const Text("Name:"),
+                const Text('Name:'),
                 TextFormField(
                   controller: firstNameController,
-                  decoration: const InputDecoration(hintText: "Dein Vorname"),
+                  decoration: const InputDecoration(hintText: 'Dein Vorname'),
                   validator: AuthInputValidators.validateName,
                 ),
                 const SizedBox(height: 16),
-                const Text("Nachname:"),
+                const Text('Nachname:'),
                 TextFormField(
                   controller: lastNameController,
-                  decoration: const InputDecoration(hintText: "Dein Nachname"),
+                  decoration: const InputDecoration(hintText: 'Dein Nachname'),
                   validator: AuthInputValidators.validateName,
                 ),
                 const SizedBox(height: 16),
-                const Text("E-Mail:"),
+                const Text('E-Mail:'),
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
-                    hintText: "Deine E-Mail-Adresse",
+                    hintText: 'Deine E-Mail-Adresse',
                   ),
                   validator: AuthInputValidators.validateEmail,
                 ),
                 const SizedBox(height: 16),
-                const Text("Passwort:"),
+                const Text('Passwort:'),
                 TextFormField(
                   controller: passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: "Wähle ein Passwort",
+                    hintText: 'Wähle ein Passwort',
                   ),
                   validator: AuthInputValidators.validatePasswordRegister,
                 ),
                 const SizedBox(height: 16),
-                const Text("Passwort wiederholen:"),
+                const Text('Passwort wiederholen:'),
                 TextFormField(
                   controller: repeatPasswordController,
                   obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: "Passwort bestätigen",
+                    hintText: 'Passwort bestätigen',
                   ),
                   validator:
                       (value) => AuthInputValidators.validatePasswordRepeat(
@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
                                     strokeWidth: 2,
                                   ),
                                 )
-                                : const Text("Registrieren"),
+                                : const Text('Registrieren'),
                       );
                     },
                   ),
@@ -158,7 +158,7 @@ class _RegisterState extends State<Register> {
                       context.goNamed('login');
                     },
                     child: const Text(
-                      "Bereits einen Account? Jetzt einloggen.",
+                      'Bereits einen Account? Jetzt einloggen.',
                     ),
                   ),
                 ),

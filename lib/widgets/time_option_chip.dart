@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/habit_time_range/time_range_bloc.dart';
-import '../bloc/habit_time_range/time_range_event.dart';
-import '../bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
+import 'package:habito/bloc/habit_time_range/time_range_event.dart';
+import 'package:habito/bloc/habit_time_range/time_range_state.dart';
 
 class TimeOptionChip extends StatelessWidget {
   final String label;

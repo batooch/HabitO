@@ -14,8 +14,8 @@ import 'package:habito/services/auth_service.dart';
 
 
 
-import 'bloc/auth/auth_bloc.dart';
-import 'firebase_options.dart';
+import 'package:habito/bloc/auth/auth_bloc.dart';
+import 'package:habito/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

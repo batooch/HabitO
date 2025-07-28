@@ -6,7 +6,7 @@ class MonthlyHabitOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Hier wächst dein neues Ich"),),
+      appBar: AppBar(title: const Text('Hier wächst dein neues Ich'),),
     );
   }
 }

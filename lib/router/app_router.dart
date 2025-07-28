@@ -4,9 +4,9 @@ import 'package:habito/views/intro.dart';
 import 'package:habito/views/habit_overview.dart';
 import 'package:habito/views/ori_chat.dart';
 import 'package:habito/views/register.dart';
-import '../views/create_habit.dart';
-import '../views/home.dart';
-import 'navigation_shell.dart';
+import 'package:habito/views/create_habit.dart';
+import 'package:habito/views/home.dart';
+import 'package:habito/router/navigation_shell.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',

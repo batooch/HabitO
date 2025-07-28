@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../models/time_of_day_range.dart';
+import 'package:habito/models/time_of_day_range.dart';
 
 class TimeRangeRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

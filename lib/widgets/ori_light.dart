@@ -1,18 +1,17 @@
 import 'dart:convert';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
-import '../bloc/habit/habit_bloc.dart';
-import '../bloc/habit/habit_state.dart';
+import 'package:habito/bloc/habit/habit_bloc.dart';
+import 'package:habito/bloc/habit/habit_state.dart';
 
 class HabitSuggestions extends StatelessWidget {
   const HabitSuggestions({super.key});
 
   Future<List<String>> fetchSuggestions(List<String> titles) async {
     final url = Uri.parse(
-      "https://66c8-2a02-8071-8282-e060-f029-45e-d26a-e11a.ngrok-free.app/chat/habits",
+      'https://66c8-2a02-8071-8282-e060-f029-45e-d26a-e11a.ngrok-free.app/chat/habits',
     );
     final response = await http.post(
       url,

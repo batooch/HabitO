@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
 import 'package:habito/bloc/habit_time_range/time_range_state.dart';
 
-import '../../models/time_of_day_range.dart';
-import '../../repository/time_range_repository.dart';
+import 'package:habito/models/time_of_day_range.dart';
+import 'package:habito/repository/time_range_repository.dart';
 
 class TimeRangeBloc extends Bloc<TimeRangeEvent, TimeRangeState> {
   final TimeRangeRepository repository;
@@ -14,16 +14,16 @@ class TimeRangeBloc extends Bloc<TimeRangeEvent, TimeRangeState> {
         TimeRangeState(
           ranges: {
             'morning': TimeOfDayRange(
-              start: TimeOfDay(hour: 6, minute: 0),
-              end: TimeOfDay(hour: 9, minute: 0),
+              start: const TimeOfDay(hour: 6, minute: 0),
+              end: const TimeOfDay(hour: 9, minute: 0),
             ),
             'noon': TimeOfDayRange(
-              start: TimeOfDay(hour: 12, minute: 0),
-              end: TimeOfDay(hour: 14, minute: 0),
+              start: const TimeOfDay(hour: 12, minute: 0),
+              end: const TimeOfDay(hour: 14, minute: 0),
             ),
             'evening': TimeOfDayRange(
-              start: TimeOfDay(hour: 18, minute: 0),
-              end: TimeOfDay(hour: 21, minute: 0),
+              start: const TimeOfDay(hour: 18, minute: 0),
+              end: const TimeOfDay(hour: 21, minute: 0),
             ),
           },
         ),

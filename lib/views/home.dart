@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../bloc/habit/habit_bloc.dart';
-import '../bloc/habit/habit_event.dart';
-import '../bloc/habit/habit_state.dart';
-import '../bloc/user/user_bloc.dart';
-import '../bloc/user/user_event.dart';
-import '../bloc/habit_time_range/time_range_bloc.dart';
-import '../bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/bloc/habit/habit_bloc.dart';
+import 'package:habito/bloc/habit/habit_event.dart';
+import 'package:habito/bloc/habit/habit_state.dart';
+import 'package:habito/bloc/user/user_bloc.dart';
+import 'package:habito/bloc/user/user_event.dart';
+import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
+import 'package:habito/bloc/habit_time_range/time_range_state.dart';
 
-import '../models/habit.dart';
-import '../widgets/custom_fab.dart';
-import '../widgets/habit_details_dialog.dart';
-import '../widgets/habit_time_section.dart';
-import '../widgets/user_menu.dart';
+import 'package:habito/models/habit.dart';
+import 'package:habito/widgets/custom_fab.dart';
+import 'package:habito/widgets/habit_details_dialog.dart';
+import 'package:habito/widgets/habit_time_section.dart';
+import 'package:habito/widgets/user_menu.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
   const HomeScreenWithHabits({super.key});
