@@ -2,18 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habito/models/habit.dart';
 
 import '../bloc/habit/habit_bloc.dart';
 import '../bloc/habit/habit_event.dart';
 import '../bloc/habit/habit_state.dart';
 import '../bloc/user/user_bloc.dart';
 import '../bloc/user/user_event.dart';
-import '../widgets/custom_fab.dart';
+import '../bloc/habit_time_range/time_range_bloc.dart';
+import '../bloc/habit_time_range/time_range_state.dart';
 
+import '../models/habit.dart';
+import '../widgets/custom_fab.dart';
 import '../widgets/habit_details_dialog.dart';
 import '../widgets/habit_time_section.dart';
-import '../widgets/logout_button.dart';
 import '../widgets/user_menu.dart';
 
 class HomeScreenWithHabits extends StatefulWidget {
@@ -67,13 +68,15 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                 const SizedBox(height: 20),
                 Expanded(
                   child: BlocBuilder<HabitBloc, HabitState>(
-                    builder: (context, state) {
-                      if (state is HabitLoading) {
+                    builder: (context, habitState) {
+                      if (habitState is HabitLoading) {
                         return const Center(child: CircularProgressIndicator());
-                      } else if (state is HabitError) {
-                        return Center(child: Text('Fehler: ${state.message}'));
-                      } else if (state is HabitLoaded) {
-                        final habits = state.habits;
+                      } else if (habitState is HabitError) {
+                        return Center(
+                          child: Text('Fehler: ${habitState.message}'),
+                        );
+                      } else if (habitState is HabitLoaded) {
+                        final habits = habitState.habits;
 
                         if (habits.isEmpty) {
                           return const Center(
@@ -82,42 +85,47 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                         }
 
                         final morningHabits =
-                            habits
-                                .where((habit) => habit.morning != null)
-                                .toList();
+                            habits.where((h) => h.morning != null).toList();
                         final noonHabits =
-                            habits
-                                .where((habit) => habit.noon != null)
-                                .toList();
+                            habits.where((h) => h.noon != null).toList();
                         final eveningHabits =
-                            habits
-                                .where((habit) => habit.evening != null)
-                                .toList();
+                            habits.where((h) => h.evening != null).toList();
 
-                        return ListView(
-                          children: [
-                            if (morningHabits.isNotEmpty)
-                              HabitTimeSection(
-                                title: 'Morgens',
-                                timeText: '06:00 – 09:00',
-                                habits: morningHabits,
-                                onHabitTap: _showHabitDetailsDialog,
-                              ),
-                            if (noonHabits.isNotEmpty)
-                              HabitTimeSection(
-                                title: 'Mittags',
-                                timeText: '12:00 – 14:00',
-                                habits: noonHabits,
-                                onHabitTap: _showHabitDetailsDialog,
-                              ),
-                            if (eveningHabits.isNotEmpty)
-                              HabitTimeSection(
-                                title: 'Abends',
-                                timeText: '18:00 – 21:00',
-                                habits: eveningHabits,
-                                onHabitTap: _showHabitDetailsDialog,
-                              ),
-                          ],
+                        return BlocBuilder<TimeRangeBloc, TimeRangeState>(
+                          builder: (context, timeState) {
+                            final morningTime =
+                                timeState.ranges['morning']?.toString() ?? '';
+                            final noonTime =
+                                timeState.ranges['noon']?.toString() ?? '';
+                            final eveningTime =
+                                timeState.ranges['evening']?.toString() ?? '';
+
+                            return ListView(
+                              children: [
+                                if (morningHabits.isNotEmpty)
+                                  HabitTimeSection(
+                                    title: 'Morgens',
+                                    timeText: morningTime,
+                                    habits: morningHabits,
+                                    onHabitTap: _showHabitDetailsDialog,
+                                  ),
+                                if (noonHabits.isNotEmpty)
+                                  HabitTimeSection(
+                                    title: 'Mittags',
+                                    timeText: noonTime,
+                                    habits: noonHabits,
+                                    onHabitTap: _showHabitDetailsDialog,
+                                  ),
+                                if (eveningHabits.isNotEmpty)
+                                  HabitTimeSection(
+                                    title: 'Abends',
+                                    timeText: eveningTime,
+                                    habits: eveningHabits,
+                                    onHabitTap: _showHabitDetailsDialog,
+                                  ),
+                              ],
+                            );
+                          },
                         );
                       }
 

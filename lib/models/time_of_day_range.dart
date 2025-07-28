@@ -4,16 +4,14 @@ class TimeOfDayRange {
   final TimeOfDay start;
   final TimeOfDay end;
 
-  TimeOfDayRange({
-    required this.start,
-    required this.end,
-  });
+  TimeOfDayRange({required this.start, required this.end});
+
+  TimeOfDayRange copyWith({TimeOfDay? start, TimeOfDay? end}) {
+    return TimeOfDayRange(start: start ?? this.start, end: end ?? this.end);
+  }
 
   Map<String, String> toMap() {
-    return {
-      'start': _formatTime(start),
-      'end': _formatTime(end),
-    };
+    return {'start': _formatTime(start), 'end': _formatTime(end)};
   }
 
   factory TimeOfDayRange.fromMap(Map<String, dynamic> map) {
@@ -31,10 +29,7 @@ class TimeOfDayRange {
 
   static TimeOfDay _parseTime(String timeStr) {
     final parts = timeStr.split(':');
-    return TimeOfDay(
-      hour: int.parse(parts[0]),
-      minute: int.parse(parts[1]),
-    );
+    return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
   }
 
   @override
