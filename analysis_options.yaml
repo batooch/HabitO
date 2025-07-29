@@ -1,6 +1,3 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
@@ -13,7 +10,6 @@ analyzer:
 
 linter:
   rules:
-    # Aktivierte Regeln zusätzlich zu flutter_lints
     cancel_subscriptions: true
     always_use_package_imports: true
     avoid_print: true
