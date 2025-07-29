@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/auth/auth_event.dart';
 import 'package:habito/bloc/auth/auth_state.dart';
-import 'package:habito/services/auth_service.dart';
+import 'package:habito/interfaces/i_auth_service.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthService authService;
+  final IAuthService authService;
 
   AuthBloc(this.authService) : super(const AuthInitial()) {
     on<LoginRequested>((event, emit) async {

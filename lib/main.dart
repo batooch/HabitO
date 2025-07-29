@@ -7,13 +7,13 @@ import 'package:habito/bloc/habit/habit_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
 import 'package:habito/bloc/user/user_bloc.dart';
+import 'package:habito/interfaces/i_auth_service.dart';
+import 'package:habito/interfaces/i_habit_repository.dart';
+import 'package:habito/interfaces/i_time_range_repository.dart';
 import 'package:habito/repository/habit_repository.dart';
 import 'package:habito/repository/time_range_repository.dart';
 import 'package:habito/router/app_router.dart';
 import 'package:habito/services/auth_service.dart';
-
-
-
 import 'package:habito/bloc/auth/auth_bloc.dart';
 import 'package:habito/firebase_options.dart';
 
@@ -21,18 +21,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  final IAuthService authService = AuthService();
+  final IHabitRepository habitRepository = HabitRepository();
+  final ITimeRangeRepository timeRangeRepository = TimeRangeRepository();
+
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (context) => AuthBloc(AuthService())),
+        BlocProvider<AuthBloc>(create: (context) => AuthBloc(authService)),
         BlocProvider<HabitBloc>(
-          create: (context) => HabitBloc(HabitRepository()),
+          create: (context) => HabitBloc(habitRepository),
         ),
-        BlocProvider<UserBloc>(create: (context) => UserBloc(AuthService())),
+        BlocProvider<UserBloc>(create: (context) => UserBloc(authService)),
         BlocProvider<TimeRangeBloc>(
-          create: (context) => TimeRangeBloc(TimeRangeRepository())..add(LoadTimeRanges()),
+          create:
+              (context) =>
+                  TimeRangeBloc(timeRangeRepository)..add(LoadTimeRanges()),
         ),
-
       ],
       child: const MyApp(),
     ),

@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habito/interfaces/i_habit_repository.dart';
 import 'package:habito/repository/habit_repository.dart';
 import 'package:habito/bloc/habit/habit_event.dart';
 import 'package:habito/bloc/habit/habit_state.dart';
 
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
-  final HabitRepository habitRepository;
+  final IHabitRepository habitRepository;
 
   HabitBloc(this.habitRepository) : super(HabitInitial()) {
     on<LoadHabits>((event, emit) async {
@@ -40,13 +41,15 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
 
     on<ToggleHabitDone>((event, emit) async {
       try {
-        await habitRepository.updateHabitDoneStatus(event.habitId, event.isDone);
+        await habitRepository.updateHabitDoneStatus(
+          event.habitId,
+          event.isDone,
+        );
         final habits = await habitRepository.fetchHabits();
         emit(HabitLoaded(habits));
       } catch (e) {
         emit(HabitError('Fehler beim Aktualisieren des Habit-Status'));
       }
     });
-
   }
 }
