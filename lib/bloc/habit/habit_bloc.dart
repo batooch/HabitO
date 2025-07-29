@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../repository/habit_repository.dart';
-import 'habit_event.dart';
-import 'habit_state.dart';
+import 'package:habito/repository/habit_repository.dart';
+import 'package:habito/bloc/habit/habit_event.dart';
+import 'package:habito/bloc/habit/habit_state.dart';
 
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
   final HabitRepository habitRepository;
@@ -13,7 +13,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         final habits = await habitRepository.fetchHabits();
         emit(HabitLoaded(habits));
       } catch (e) {
-        emit(HabitError("Fehler beim Laden der Habits"));
+        emit(HabitError('Fehler beim Laden der Habits'));
       }
     });
 
@@ -24,7 +24,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         emit(HabitLoaded(habits));
         emit(HabitAddSuccess());
       } catch (e) {
-        emit(HabitError("Fehler beim Hinzufügen"));
+        emit(HabitError('Fehler beim Hinzufügen'));
       }
     });
 
@@ -34,7 +34,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         final habits = await habitRepository.fetchHabits();
         emit(HabitLoaded(habits));
       } catch (e) {
-        emit(HabitError("Fehler beim Löschen"));
+        emit(HabitError('Fehler beim Löschen'));
       }
     });
 
@@ -44,7 +44,7 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
         final habits = await habitRepository.fetchHabits();
         emit(HabitLoaded(habits));
       } catch (e) {
-        emit(HabitError("Fehler beim Aktualisieren des Habit-Status"));
+        emit(HabitError('Fehler beim Aktualisieren des Habit-Status'));
       }
     });
 

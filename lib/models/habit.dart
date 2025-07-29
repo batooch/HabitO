@@ -33,28 +33,24 @@ class Habit {
   factory Habit.fromMap(Map<String, dynamic> map, String documentId) {
     return Habit(
       id: documentId,
-      title: map['title'] ?? 'Unbenannt',
+      title: map['title'] as String? ?? 'Unbenannt',
       createdAt:
           map['createdAt'] != null
-              ? DateTime.tryParse(map['createdAt']) ?? DateTime.now()
+              ? DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now()
               : DateTime.now(),
       morning:
           map['morning'] != null && map['morning'] is Map
-              ? TimeOfDayRange.fromMap(
-                Map<String, dynamic>.from(map['morning']),
-              )
+              ? TimeOfDayRange.fromMap(map['morning'] as Map<String, dynamic>)
               : null,
       noon:
           map['noon'] != null && map['noon'] is Map
-              ? TimeOfDayRange.fromMap(Map<String, dynamic>.from(map['noon']))
+              ? TimeOfDayRange.fromMap(map['noon'] as Map<String, dynamic>)
               : null,
       evening:
           map['evening'] != null && map['evening'] is Map
-              ? TimeOfDayRange.fromMap(
-                Map<String, dynamic>.from(map['evening']),
-              )
+              ? TimeOfDayRange.fromMap(map['evening'] as Map<String, dynamic>)
               : null,
-      isDone: map['isDone'] ?? false,
+      isDone: map['isDone'] as bool? ?? false,
     );
   }
 

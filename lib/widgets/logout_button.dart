@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../bloc/auth/auth_bloc.dart';
-import '../bloc/auth/auth_event.dart';
-import '../bloc/auth/auth_state.dart';
+import 'package:habito/bloc/auth/auth_bloc.dart';
+import 'package:habito/bloc/auth/auth_event.dart';
+import 'package:habito/bloc/auth/auth_state.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -29,7 +29,7 @@ class LogoutButton extends StatelessWidget {
       },
       child: TextButton.icon(
         onPressed: () {
-          context.read<AuthBloc>().add(LogoutRequested());
+          context.read<AuthBloc>().add(const LogoutRequested());
         },
         icon: const Icon(Icons.logout, color: Colors.red),
         label: const Text('Logout', style: TextStyle(color: Colors.red)),

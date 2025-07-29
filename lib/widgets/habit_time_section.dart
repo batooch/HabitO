@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/habit.dart';
-import 'habit_card.dart';
+import 'package:habito/models/habit.dart';
+import 'package:habito/widgets/habit_card.dart';
 
 class HabitTimeSection extends StatelessWidget {
   final String title;

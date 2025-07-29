@@ -16,8 +16,8 @@ class TimeOfDayRange {
 
   factory TimeOfDayRange.fromMap(Map<String, dynamic> map) {
     return TimeOfDayRange(
-      start: _parseTime(map['start']),
-      end: _parseTime(map['end']),
+      start: _parseTime(map['start'] as String),
+      end: _parseTime(map['end'] as String),
     );
   }
 

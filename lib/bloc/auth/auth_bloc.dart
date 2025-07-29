@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth_event.dart';
-import 'auth_state.dart';
-import '../../services/auth_service.dart';
+import 'package:habito/bloc/auth/auth_event.dart';
+import 'package:habito/bloc/auth/auth_state.dart';
+import 'package:habito/services/auth_service.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthService authService;
 
-  AuthBloc(this.authService) : super(AuthInitial()) {
+  AuthBloc(this.authService) : super(const AuthInitial()) {
     on<LoginRequested>((event, emit) async {
-      emit(AuthLoading());
+      emit(const AuthLoading());
       try {
         final uid = await authService.loginUser(
           email: event.email,
@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<RegisterRequested>((event, emit) async {
-      emit(AuthLoading());
+      emit(const AuthLoading());
       try {
         final uid = await authService.registerUser(
           email: event.email,
@@ -38,9 +38,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogoutRequested>((event, emit) async {
       try {
         await authService.logout();
-        emit(Unauthenticated());
+        emit(const Unauthenticated());
       } catch (e) {
-        emit(AuthError("Fehler beim Ausloggen"));
+        emit(const AuthError('Fehler beim Ausloggen'));
       }
     });
   }

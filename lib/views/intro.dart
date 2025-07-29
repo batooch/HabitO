@@ -18,7 +18,7 @@ class Intro extends StatelessWidget {
                 Image.asset('assets/images/LogoHabitO.jpeg', height: 120),
                 const SizedBox(height: 40),
                 const Text(
-                  "Willkommen bei\nHabit-O.",
+                  'Willkommen bei\nHabit-O.',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -28,9 +28,9 @@ class Intro extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  "Hier kannst du\ndeine Ziele erreichen\nin dem du Gewohnheiten anlegst.\n\n"
-                  "Du hast ein Ziel, aber weißt nicht,\nwo du anfangen sollst?\n\n"
-                  "Kein Problem. Ori, dein\npersönlicher KI-Assistent\nunterstützt dich gerne dabei.",
+                  'Hier kannst du\ndeine Ziele erreichen\nin dem du Gewohnheiten anlegst.\n\n'
+                  'Du hast ein Ziel, aber weißt nicht,\nwo du anfangen sollst?\n\n'
+                  'Kein Problem. Ori, dein\npersönlicher KI-Assistent\nunterstützt dich gerne dabei.',
                   style: TextStyle(fontSize: 16, color: Color(0xFF173B2F)),
                   textAlign: TextAlign.center,
                 ),
@@ -52,7 +52,7 @@ class Intro extends StatelessWidget {
                     shadowColor: Colors.black26,
                   ),
                   child: const Text(
-                    "Los geht’s!",
+                    'Los geht’s!',
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/ori_light.dart';
+import 'package:habito/widgets/ori_light.dart';
 
 class OriChat extends StatelessWidget {
   const OriChat({super.key});
@@ -13,7 +13,7 @@ class OriChat extends StatelessWidget {
         backgroundColor: const Color(0xFFFDF7ED),
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF1D4033)),
-        title: const Text("Ori", style: TextStyle(color: Color(0xFF1D4033))),
+        title: const Text('Ori', style: TextStyle(color: Color(0xFF1D4033))),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -35,7 +35,7 @@ class OriChat extends StatelessWidget {
                 ],
               ),
               child: const Text(
-                "Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?",
+                'Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?',
                 style: TextStyle(
                   fontSize: 16,
                   height: 1.5,
@@ -44,12 +44,12 @@ class OriChat extends StatelessWidget {
               ),
             ),
 
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.lightbulb, color: Color(0xFF1D4033)),
                 SizedBox(width: 8),
                 Text(
-                  "Hier findest du Vorschläge für neue Gewohnheiten.",
+                  'Hier findest du Vorschläge für neue Gewohnheiten.',
                   style: TextStyle(
                     color: Color(0xFF1D4033),
                     fontWeight: FontWeight.w500,

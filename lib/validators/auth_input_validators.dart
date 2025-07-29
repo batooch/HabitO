@@ -36,6 +36,7 @@ class AuthInputValidators {
     if (password == null || password.isEmpty) {
       return 'Passwort darf nicht leer sein';
     }
+    return null;
   }
 
   static String? validatePasswordRepeat(

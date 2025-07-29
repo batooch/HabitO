@@ -1,4 +1,4 @@
-import '../../models/time_of_day_range.dart';
+import 'package:habito/models/time_of_day_range.dart';
 
 class TimeRangeState {
   final Map<String, TimeOfDayRange> ranges;

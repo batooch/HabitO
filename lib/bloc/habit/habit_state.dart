@@ -1,4 +1,4 @@
-import '../../models/habit.dart';
+import 'package:habito/models/habit.dart';
 
 abstract class HabitState {}
 
