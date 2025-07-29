@@ -24,10 +24,7 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
@@ -59,6 +56,14 @@ class DefaultFirebaseOptions {
     projectId: 'habito-d6a2b',
     storageBucket: 'habito-d6a2b.firebasestorage.app',
     iosBundleId: 'com.example.habito',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAwGdAkRRvnj5ck8pI5oErz7IkKqXthPRY',
+    appId: '1:472822113982:android:84553f88a88e0a9315a0ef',
+    messagingSenderId: '472822113982',
+    projectId: 'habito-d6a2b',
+    storageBucket: 'habito-d6a2b.firebasestorage.app',
   );
 
 }
