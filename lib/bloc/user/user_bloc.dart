@@ -12,11 +12,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserLoading());
       try {
         final doc = await authService.getUserData(event.uid);
-        emit(UserLoaded(
-          firstName: doc['firstName'] ?? '',
-          lastName: doc['lastName'] ?? '',
-          email: doc['email'] ?? '',
-        ));
+        emit(
+          UserLoaded(
+            firstName: doc['firstName'] as String? ?? '',
+            lastName: doc['lastName'] as String? ?? '',
+            email: doc['email'] as String? ?? '',
+          ),
+        );
       } catch (e) {
         emit(UserError('Benutzerdaten konnten nicht geladen werden.'));
       }
