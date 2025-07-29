@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:habito/interfaces/i_habit_repository.dart';
 import 'package:habito/models/habit.dart';
 
-class HabitRepository {
+class HabitRepository implements IHabitRepository{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 

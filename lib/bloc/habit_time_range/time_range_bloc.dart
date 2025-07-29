@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
 import 'package:habito/bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/interfaces/i_time_range_repository.dart';
 
 import 'package:habito/models/time_of_day_range.dart';
-import 'package:habito/repository/time_range_repository.dart';
 
 class TimeRangeBloc extends Bloc<TimeRangeEvent, TimeRangeState> {
-  final TimeRangeRepository repository;
+  final ITimeRangeRepository repository;
 
   TimeRangeBloc(this.repository)
     : super(
