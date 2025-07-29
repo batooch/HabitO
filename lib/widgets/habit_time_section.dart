@@ -31,7 +31,14 @@ class HabitTimeSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ...habits.map(
-          (habit) => HabitCard(habit: habit, onTap: () => onHabitTap(habit)),
+          (habit) => HabitCard(
+            habit: habit,
+            isChecked: false,
+            onCheckboxChanged: (value) {
+              print('Checkbox geändert: $value');
+            },
+            onTap: () => onHabitTap(habit),
+          ),
         ),
       ],
     );
