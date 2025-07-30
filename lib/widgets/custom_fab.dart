@@ -9,7 +9,7 @@ class CustomFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFF123D2B),
       child: const Icon(Icons.add, color: AppColors.white),
       onPressed: () {
         showModalBottomSheet(
@@ -35,7 +35,7 @@ class CustomFAB extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: AppColors.background,
+                            color: const Color(0xFF173B2F),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: ListTile(
@@ -55,7 +55,7 @@ class CustomFAB extends StatelessWidget {
                         const SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
-                            color: (AppColors.background),
+                            color: const Color(0xFF173B2F),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: ListTile(

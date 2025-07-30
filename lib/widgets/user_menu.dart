@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habito/bloc/user/user_bloc.dart';
 import 'package:habito/bloc/user/user_state.dart';
 import 'package:habito/constants/app_colors.dart';
@@ -37,7 +38,9 @@ class UserMenu extends StatelessWidget {
 
                         const SizedBox(height: 4),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.goNamed('myprofile');
+                          },
                           child: Text(
                             AppTexts.userMenuProfile,
                             style: AppTextStyles.bodyMedium,

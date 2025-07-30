@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:habito/models/habit.dart';
 import 'package:habito/widgets/habit_card.dart';
@@ -7,6 +8,7 @@ class HabitTimeSection extends StatelessWidget {
   final List<Habit> habits;
   final String timeText;
   final void Function(Habit habit) onHabitTap;
+  final void Function(Habit habit, bool isChecked) onCheckboxChanged;
 
   const HabitTimeSection({
     super.key,
@@ -14,6 +16,7 @@ class HabitTimeSection extends StatelessWidget {
     required this.habits,
     required this.timeText,
     required this.onHabitTap,
+    required this.onCheckboxChanged,
   });
 
   @override
@@ -33,10 +36,9 @@ class HabitTimeSection extends StatelessWidget {
         ...habits.map(
           (habit) => HabitCard(
             habit: habit,
-            isChecked: false,
-            onCheckboxChanged: (value) {
-              print('Checkbox geändert: $value');
-            },
+            isChecked: habit.isDone,
+            onCheckboxChanged:
+                (value) => onCheckboxChanged(habit, value ?? false),
             onTap: () => onHabitTap(habit),
           ),
         ),

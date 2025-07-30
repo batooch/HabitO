@@ -109,6 +109,9 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                                     timeText: morningTime,
                                     habits: morningHabits,
                                     onHabitTap: _showHabitDetailsDialog,
+                                    onCheckboxChanged: (habit, value) {
+                                      context.read<HabitBloc>().add(ToggleHabitDone(habit.id!, value));
+                                    },
                                   ),
                                 if (noonHabits.isNotEmpty)
                                   HabitTimeSection(
@@ -116,6 +119,9 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                                     timeText: noonTime,
                                     habits: noonHabits,
                                     onHabitTap: _showHabitDetailsDialog,
+                                    onCheckboxChanged: (habit, value) {
+                                      context.read<HabitBloc>().add(ToggleHabitDone(habit.id!, value));
+                                    },
                                   ),
                                 if (eveningHabits.isNotEmpty)
                                   HabitTimeSection(
@@ -123,6 +129,9 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                                     timeText: eveningTime,
                                     habits: eveningHabits,
                                     onHabitTap: _showHabitDetailsDialog,
+                                    onCheckboxChanged: (habit, value) {
+                                      context.read<HabitBloc>().add(ToggleHabitDone(habit.id!, value));
+                                    },
                                   ),
                               ],
                             );

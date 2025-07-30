@@ -81,4 +81,7 @@ class AppTexts {
       'Hier wächst bals dein neues Ich.\nWir arbeiten daran.';
   static const habitOverviewText2 =
       'Du wirst hier bald sehen, wie regelmäßig du deine Gewohnheiten verfolgst – Tag für Tag.';
+
+  static const myProfile =
+      'Hier kannst du bald deine persönlichen Daten einsehen.\nWir arbeiten daran.';
 }

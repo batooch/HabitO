@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:habito/views/login.dart';
 import 'package:habito/views/intro.dart';
 import 'package:habito/views/habit_overview.dart';
+import 'package:habito/views/my_profile.dart';
 import 'package:habito/views/ori_chat.dart';
 import 'package:habito/views/register.dart';
 import 'package:habito/views/create_habit.dart';
@@ -49,6 +50,11 @@ final GoRouter appRouter = GoRouter(
           path: '/statistic',
           name: 'statistic',
           builder: (context, state) => const HabitOverviewPlaceholder(),
+        ),
+        GoRoute(
+          path: '/myprofile',
+          name: 'myprofile',
+          builder: (context, state) => const MyProfile(),
         ),
       ],
     ),
