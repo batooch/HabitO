@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/constants/app_texts.dart';
 
 class CustomFAB extends StatelessWidget {
   const CustomFAB({super.key});
@@ -7,8 +9,8 @@ class CustomFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: const Color(0xFF123D2B),
-      child: const Icon(Icons.add, color: Colors.white),
+      backgroundColor: AppColors.background,
+      child: const Icon(Icons.add, color: AppColors.white),
       onPressed: () {
         showModalBottomSheet(
           context: context,
@@ -33,17 +35,17 @@ class CustomFAB extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: const Color(0xFF173B2F),
+                            color: AppColors.background,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: ListTile(
                             title: const Text(
-                              'Gewohnheit erstellen',
-                              style: TextStyle(color: Colors.white),
+                              AppTexts.createHabitHint,
+                              style: TextStyle(color: AppColors.white),
                             ),
                             trailing: const Icon(
                               Icons.add,
-                              color: Colors.white,
+                              color: AppColors.white,
                             ),
                             onTap: () {
                               context.goNamed('create');
@@ -53,17 +55,17 @@ class CustomFAB extends StatelessWidget {
                         const SizedBox(height: 10),
                         Container(
                           decoration: BoxDecoration(
-                            color: const Color(0xFF173B2F),
+                            color: (AppColors.background),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: ListTile(
                             title: const Text(
-                              'Ori fragen',
-                              style: TextStyle(color: Colors.white),
+                              AppTexts.oriAsk,
+                              style: TextStyle(color: AppColors.white),
                             ),
                             trailing: const Icon(
                               Icons.lightbulb_outline,
-                              color: Colors.white,
+                              color: AppColors.white,
                             ),
                             onTap: () {
                               Navigator.of(context).pop();

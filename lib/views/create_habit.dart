@@ -6,6 +6,8 @@ import 'package:habito/bloc/habit/habit_event.dart';
 import 'package:habito/bloc/habit/habit_state.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 import 'package:habito/models/habit.dart';
 import 'package:habito/widgets/time_option_chip.dart';
 
@@ -49,9 +51,9 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
     return BlocListener<HabitBloc, HabitState>(
       listener: (context, state) {
         if (state is HabitAddSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Habit erfolgreich erstellt!')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text(AppTexts.habitCreated)));
           _habitNew.clear();
           selectedPeriods.clear();
           Future.delayed(const Duration(seconds: 2), () {
@@ -72,15 +74,17 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
             builder: (context, timeState) {
               return Column(
                 children: [
+                  const SizedBox(height:40),
                   const Text(
-                    'Was möchtest du \nzur Gewohnheit machen?',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    AppTexts.createHabitQuestion,
+                    style: AppTextStyles.headlineMedium,
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 20),
                   TextField(
                     controller: _habitNew,
                     decoration: const InputDecoration(
-                      labelText: 'Gewohnheit erstellen',
+                      labelText: AppTexts.createHabitHint,
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -103,7 +107,7 @@ class _CreateHabitPageState extends State<CreateHabitPage> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => _handleSubmitHabit(timeState),
-                    child: const Text('Erstellen'),
+                    child: const Text(AppTexts.createButton),
                   ),
                 ],
               );

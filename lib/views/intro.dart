@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/constants/app_texts.dart';
 
 class Intro extends StatelessWidget {
   const Intro({super.key});
@@ -7,7 +9,7 @@ class Intro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF6ED),
+      backgroundColor: AppColors.backgroundSoft,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -18,20 +20,18 @@ class Intro extends StatelessWidget {
                 Image.asset('assets/images/LogoHabitO.jpeg', height: 120),
                 const SizedBox(height: 40),
                 const Text(
-                  'Willkommen bei\nHabit-O.',
+                  AppTexts.introHeadline,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF173B2F),
+                    color: AppColors.background,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'Hier kannst du\ndeine Ziele erreichen\nin dem du Gewohnheiten anlegst.\n\n'
-                  'Du hast ein Ziel, aber weißt nicht,\nwo du anfangen sollst?\n\n'
-                  'Kein Problem. Ori, dein\npersönlicher KI-Assistent\nunterstützt dich gerne dabei.',
-                  style: TextStyle(fontSize: 16, color: Color(0xFF173B2F)),
+                  AppTexts.introParagraph,
+                  style: TextStyle(fontSize: 16, color: AppColors.background),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 60),
@@ -40,7 +40,7 @@ class Intro extends StatelessWidget {
                     context.goNamed('home');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF173B2F),
+                    backgroundColor: AppColors.background,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40,
                       vertical: 14,
@@ -49,11 +49,11 @@ class Intro extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14),
                     ),
                     elevation: 6,
-                    shadowColor: Colors.black26,
+                    shadowColor: AppColors.black,
                   ),
                   child: const Text(
-                    'Los geht’s!',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    AppTexts.introButton,
+                    style: TextStyle(color: AppColors.white, fontSize: 16),
                   ),
                 ),
                 const SizedBox(height: 40),

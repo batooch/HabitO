@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
 import 'package:habito/bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/constants/app_texts.dart';
 
 class TimeOptionChip extends StatelessWidget {
   final String label;
@@ -19,11 +20,11 @@ class TimeOptionChip extends StatelessWidget {
   String _getLabelText(String key) {
     switch (key) {
       case 'morning':
-        return 'Morgens';
+        return AppTexts.createMorning;
       case 'noon':
-        return 'Mittags';
+        return AppTexts.createMidday;
       case 'evening':
-        return 'Abends';
+        return AppTexts.createEvening;
       default:
         return '';
     }

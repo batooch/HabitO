@@ -66,6 +66,7 @@ class AppTexts {
   static const createMidday = 'Mittags';
   static const createEvening = 'Abends';
   static const createButton = 'Erstellen';
+  static const String habitCreated = 'Habit erfolgreich erstellt.';
 
   static const oriTitle = 'Ori';
   static const oriWelcomeMessage =
@@ -74,4 +75,5 @@ class AppTexts {
       'Hier findest du Vorschläge für neue Gewohnheiten.';
   static const oriNoSuggestionsFound = 'Keine Vorschläge gefunden.';
   static const oriLoadingSuggestions = 'Lade Vorschläge…';
+  static const oriAsk = 'Ori fragen';
 }
