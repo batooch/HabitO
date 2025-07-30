@@ -70,7 +70,7 @@ class AppTexts {
 
   static const oriTitle = 'Ori';
   static const oriWelcomeMessage =
-      'Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?';
+      'Hi, ich bin Ori. Ich helfe dir dabei,\nneue Gewohnheiten zu entwickeln.\nWorauf wartest du?';
   static const oriSuggestionTitle =
       'Hier findest du Vorschläge für neue Gewohnheiten.';
   static const oriNoSuggestionsFound = 'Keine Vorschläge gefunden.';

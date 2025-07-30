@@ -7,6 +7,7 @@ class HabitRepository implements IHabitRepository{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  @override
   Future<List<Habit>> fetchHabits() async {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');
@@ -23,6 +24,7 @@ class HabitRepository implements IHabitRepository{
         .toList();
   }
 
+  @override
   Future<void> addHabit(Habit habit) async {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');
@@ -34,6 +36,7 @@ class HabitRepository implements IHabitRepository{
         .add(habit.toMap());
   }
 
+  @override
   Future<void> deleteHabit(String habitId) async {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');
@@ -46,6 +49,7 @@ class HabitRepository implements IHabitRepository{
         .delete();
   }
 
+  @override
   Future<void> updateHabitDoneStatus(String habitId, bool isDone) async {
     await FirebaseFirestore.instance
         .collection('users')

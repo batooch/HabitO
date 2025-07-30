@@ -7,6 +7,7 @@ class TimeRangeRepository implements ITimeRangeRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  @override
   Future<void> saveTimeRange(String period, TimeOfDayRange range) async {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');
@@ -19,6 +20,7 @@ class TimeRangeRepository implements ITimeRangeRepository {
         .set(range.toMap());
   }
 
+  @override
   Future<Map<String, TimeOfDayRange>> loadTimeRanges() async {
     final uid = _auth.currentUser?.uid;
     if (uid == null) throw Exception('Kein Benutzer angemeldet');

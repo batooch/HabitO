@@ -6,6 +6,7 @@ class AuthService implements IAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  @override
   Future<String> registerUser({
     required String email,
     required String password,
@@ -35,6 +36,7 @@ class AuthService implements IAuthService {
     return user.uid;
   }
 
+  @override
   Future<String> loginUser({
     required String email,
     required String password,
@@ -77,10 +79,12 @@ class AuthService implements IAuthService {
     }
   }
 
+  @override
   Future<void> logout() async {
     await _auth.signOut();
   }
 
+  @override
   Future<Map<String, dynamic>> getUserData(String uid) async {
     final doc = await _firestore.collection('users').doc(uid).get();
     if (!doc.exists) throw Exception('Benutzer nicht gefunden');
