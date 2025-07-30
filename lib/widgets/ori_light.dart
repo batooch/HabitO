@@ -1,31 +1,16 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/services/ori_service.dart';
 import 'package:habito/bloc/habit/habit_bloc.dart';
 import 'package:habito/bloc/habit/habit_state.dart';
 
 class HabitSuggestions extends StatelessWidget {
-  const HabitSuggestions({super.key});
+  HabitSuggestions({super.key});
 
-  Future<List<String>> fetchSuggestions(List<String> titles) async {
-    final url = Uri.parse(
-      'https://66c8-2a02-8071-8282-e060-f029-45e-d26a-e11a.ngrok-free.app/chat/habits',
-    );
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(titles),
-    );
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = jsonDecode(response.body) as List<dynamic>;
-      return data.map((e) => e.toString()).toList();
-    } else {
-      throw Exception('Failed to load suggestions: ${response.statusCode}');
-    }
-  }
+  final OriService _oriService = OriService();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +22,7 @@ class HabitSuggestions extends StatelessWidget {
           final titles = state.habits.map((h) => h.title).toList();
 
           return FutureBuilder<List<String>>(
-            future: fetchSuggestions(titles),
+            future: _oriService.fetchSuggestions(titles),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -48,9 +33,15 @@ class HabitSuggestions extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Text('Fehler: ${snapshot.error}');
+                return Text(
+                  'Fehler: ${snapshot.error}',
+                  style: AppTextStyles.bodyMedium,
+                );
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const Text('Keine Vorschläge gefunden.');
+                return const Text(
+                  AppTexts.oriNoSuggestionsFound,
+                  style: AppTextStyles.bodyMedium,
+                );
               }
 
               final suggestions = snapshot.data!;
@@ -63,7 +54,7 @@ class HabitSuggestions extends StatelessWidget {
                       vertical: 6,
                       horizontal: 8,
                     ),
-                    color: Colors.green.shade50,
+                    color: AppColors.suggestionCard,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -75,7 +66,7 @@ class HabitSuggestions extends StatelessWidget {
                       ),
                       title: Text(
                         suggestions[index],
-                        style: const TextStyle(fontSize: 16),
+                        style: AppTextStyles.suggestionText,
                       ),
                     ),
                   );
@@ -84,7 +75,10 @@ class HabitSuggestions extends StatelessWidget {
             },
           );
         } else if (state is HabitError) {
-          return Text('Fehler: ${state.message}');
+          return Text(
+            'Fehler: ${state.message}',
+            style: AppTextStyles.bodyMedium,
+          );
         }
 
         return const SizedBox.shrink();

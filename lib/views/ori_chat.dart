@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 
 import 'package:habito/widgets/ori_light.dart';
 
@@ -8,12 +10,13 @@ class OriChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF7ED),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFDF7ED),
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF1D4033)),
-        title: const Text('Ori', style: TextStyle(color: Color(0xFF1D4033))),
+        title: const Text(
+          AppTexts.oriTitle,
+          style: AppTextStyles.headlineLarge,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -35,12 +38,8 @@ class OriChat extends StatelessWidget {
                 ],
               ),
               child: const Text(
-                'Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?',
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.5,
-                  color: Color(0xFF1D4033),
-                ),
+                AppTexts.oriWelcomeMessage,
+                style: AppTextStyles.bodyLarge,
               ),
             ),
 
@@ -49,18 +48,15 @@ class OriChat extends StatelessWidget {
                 Icon(Icons.lightbulb, color: Color(0xFF1D4033)),
                 SizedBox(width: 8),
                 Text(
-                  'Hier findest du Vorschläge für neue Gewohnheiten.',
-                  style: TextStyle(
-                    color: Color(0xFF1D4033),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  AppTexts.oriSuggestionTitle,
+                  style: AppTextStyles.bodyMedium,
                 ),
               ],
             ),
 
             const SizedBox(height: 12),
 
-            const Expanded(child: HabitSuggestions()),
+            Expanded(child: HabitSuggestions()),
           ],
         ),
       ),
