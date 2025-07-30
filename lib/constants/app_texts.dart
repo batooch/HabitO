@@ -1,4 +1,21 @@
 class AppTexts {
+  static const appTitle = 'Habit-O';
+
+  static const registerTitle = 'Registrieren';
+  static const registerFirstNameLabel = 'Name:';
+  static const registerFirstNameHint = 'Dein Vorname';
+  static const registerLastNameLabel = 'Nachname:';
+  static const registerLastNameHint = 'Dein Nachname';
+  static const registerEmailLabel = 'E-Mail:';
+  static const registerEmailHint = 'Deine E-Mail-Adresse';
+  static const registerPasswordLabel = 'Passwort:';
+  static const registerPasswordHint = 'Wähle ein Passwort';
+  static const registerPasswordRepeatLabel = 'Passwort wiederholen:';
+  static const registerPasswordRepeatHint = 'Passwort bestätigen';
+  static const registerButton = 'Registrieren';
+  static const registerLoginLink = 'Bereits einen Account? Jetzt einloggen.';
+  static const registerErrorTitle = 'Fehler';
+
   static const loginTitle = 'Login';
   static const loginEmailLabel = 'E-Mail:';
   static const loginEmailHint = 'Deine E-Mail-Adresse';
@@ -6,6 +23,22 @@ class AppTexts {
   static const loginPasswordHint = 'Dein Passwort';
   static const loginButton = 'Login';
   static const noAccountText = 'Noch keinen Account? Jetzt registrieren.';
+
+  static const introHeadline = 'Willkommen bei\nHabit-O.';
+  static const introParagraph =
+      'Hier kannst du\n'
+      'deine Ziele erreichen\n'
+      'in dem du Gewohnheiten anlegst.\n\n'
+      'Du hast ein Ziel, aber weißt nicht,\n'
+      'wo du anfangen sollst?\n\n'
+      'Kein Problem. Ori, dein\n'
+      'persönlicher KI-Assistent\n'
+      'unterstützt dich gerne dabei.';
+  static const introButton = 'Los geht’s!';
+
+  static const navHome = 'Home';
+  static const navOverview = 'Übersicht';
+  static const navCreate = 'Erstellen';
 
   static const homeHeadline = 'Deine Gewohnheiten';
   static const morning = 'Morgens';
@@ -21,7 +54,9 @@ class AppTexts {
   static const createEvening = 'Abends';
   static const createButton = 'Erstellen';
 
-  static const navHome = 'Home';
-  static const navOverview = 'Übersicht';
-  static const navCreate = 'Erstellen';
+  static const oriWelcomeMessage =
+      'Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?';
+
+  static const oriHintTitle =
+      'Hier findest du Vorschläge für neue Gewohnheiten.';
 }
