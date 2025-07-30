@@ -76,4 +76,9 @@ class AppTexts {
   static const oriNoSuggestionsFound = 'Keine Vorschläge gefunden.';
   static const oriLoadingSuggestions = 'Lade Vorschläge…';
   static const oriAsk = 'Ori fragen';
+
+  static const habitOverviewText1 =
+      'Hier wächst bals dein neues Ich.\nWir arbeiten daran.';
+  static const habitOverviewText2 =
+      'Du wirst hier bald sehen, wie regelmäßig du deine Gewohnheiten verfolgst – Tag für Tag.';
 }

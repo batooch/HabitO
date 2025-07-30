@@ -48,7 +48,7 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: '/statistic',
           name: 'statistic',
-          builder: (context, state) => const MonthlyHabitOverview(),
+          builder: (context, state) => const HabitOverviewPlaceholder(),
         ),
       ],
     ),
