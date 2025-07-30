@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habito/constants/app_colors.dart';
 import 'package:habito/models/habit.dart';
 
 class HabitCard extends StatelessWidget {
@@ -20,7 +21,7 @@ class HabitCard extends StatelessWidget {
     return Opacity(
       opacity: isChecked ? 0.5 : 1.0,
       child: Card(
-        color: const Color(0xFFF2F9F5),
+        color: AppColors.backgroundSoft,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 2,
         margin: const EdgeInsets.symmetric(vertical: 8),

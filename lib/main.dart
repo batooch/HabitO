@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:habito/bloc/habit/habit_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_event.dart';
 import 'package:habito/bloc/user/user_bloc.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 import 'package:habito/interfaces/i_auth_service.dart';
 import 'package:habito/interfaces/i_habit_repository.dart';
 import 'package:habito/interfaces/i_time_range_repository.dart';
@@ -19,6 +23,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   final IAuthService authService = AuthService();
@@ -52,10 +57,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      title: 'habitO',
+      title: AppTexts.appTitle,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        scaffoldBackgroundColor: AppColors.background,
         textTheme: GoogleFonts.nunitoTextTheme(),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.background,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: AppColors.background,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryGreen,
+            foregroundColor: AppColors.backgroundSoft,
+            textStyle: AppTextStyles.bodyMedium,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
       supportedLocales: const [Locale('de')],
       locale: const Locale('de'),

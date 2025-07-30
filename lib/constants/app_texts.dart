@@ -41,9 +41,22 @@ class AppTexts {
   static const navCreate = 'Erstellen';
 
   static const homeHeadline = 'Deine Gewohnheiten';
+  static const String homeScreenNoHabits = 'Noch keine Habits erstellt.';
   static const morning = 'Morgens';
   static const midday = 'Mittags';
   static const evening = 'Abends';
+
+  static const userMenuGreeting = 'Hallo';
+  static const userMenuProfile = 'Mein Profil';
+  static const userMenuLogout = 'Logout';
+  static const logoutSuccess = 'Du wurdest erfolgreich abgemeldet.';
+
+  static const habitDialogCreatedAt = 'Erstellt am:';
+  static const habitDialogDeleteQuestion =
+      'Möchtest du diese Gewohnheit löschen?';
+  static const habitDialogCancel = 'Abbrechen';
+  static const habitDialogDelete = 'Löschen';
+  static const String habitDeleted = 'Habit erfolgreich gelöscht.';
 
   static const overviewHeadline = 'Hier wächst dein neues Ich';
 
@@ -54,9 +67,11 @@ class AppTexts {
   static const createEvening = 'Abends';
   static const createButton = 'Erstellen';
 
+  static const oriTitle = 'Ori';
   static const oriWelcomeMessage =
       'Hi, ich bin Ori. Ich helfe dir dabei,\ndeine Ziele in kleine Schritte zu verwandeln.\nWas ist dein Ziel?';
-
-  static const oriHintTitle =
+  static const oriSuggestionTitle =
       'Hier findest du Vorschläge für neue Gewohnheiten.';
+  static const oriNoSuggestionsFound = 'Keine Vorschläge gefunden.';
+  static const oriLoadingSuggestions = 'Lade Vorschläge…';
 }

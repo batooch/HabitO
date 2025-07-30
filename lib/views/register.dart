@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:habito/bloc/auth/auth_bloc.dart';
 import 'package:habito/bloc/auth/auth_event.dart';
 import 'package:habito/bloc/auth/auth_state.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 import 'package:habito/validators/auth_input_validators.dart';
 
 class Register extends StatefulWidget {
@@ -51,60 +54,83 @@ class _RegisterState extends State<Register> {
           context.goNamed('login');
         } else if (state is AuthError) {
           Get.snackbar(
-            'Fehler',
+            AppTexts.registerErrorTitle,
             state.message,
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
+            backgroundColor: AppColors.red,
+            colorText: AppColors.white,
           );
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Registrieren')),
+        appBar: AppBar(title: Text(AppTexts.registerTitle)),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
             child: ListView(
               children: [
-                const Text('Name:'),
+                Text(
+                  AppTexts.registerFirstNameLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: firstNameController,
-                  decoration: const InputDecoration(hintText: 'Dein Vorname'),
+                  decoration: const InputDecoration(
+                    hintText: AppTexts.registerFirstNameHint,
+                  ),
                   validator: AuthInputValidators.validateName,
                 ),
                 const SizedBox(height: 16),
-                const Text('Nachname:'),
+
+                Text(
+                  AppTexts.registerLastNameLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: lastNameController,
-                  decoration: const InputDecoration(hintText: 'Dein Nachname'),
+                  decoration: const InputDecoration(
+                    hintText: AppTexts.registerLastNameHint,
+                  ),
                   validator: AuthInputValidators.validateName,
                 ),
                 const SizedBox(height: 16),
-                const Text('E-Mail:'),
+
+                Text(
+                  AppTexts.registerEmailLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: emailController,
                   decoration: const InputDecoration(
-                    hintText: 'Deine E-Mail-Adresse',
+                    hintText: AppTexts.registerEmailHint,
                   ),
                   validator: AuthInputValidators.validateEmail,
                 ),
                 const SizedBox(height: 16),
-                const Text('Passwort:'),
+
+                Text(
+                  AppTexts.registerPasswordLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: 'Wähle ein Passwort',
+                    hintText: AppTexts.registerPasswordHint,
                   ),
                   validator: AuthInputValidators.validatePasswordRegister,
                 ),
                 const SizedBox(height: 16),
-                const Text('Passwort wiederholen:'),
+
+                Text(
+                  AppTexts.registerPasswordRepeatLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: repeatPasswordController,
                   obscureText: true,
                   decoration: const InputDecoration(
-                    hintText: 'Passwort bestätigen',
+                    hintText: AppTexts.registerPasswordRepeatHint,
                   ),
                   validator:
                       (value) => AuthInputValidators.validatePasswordRepeat(
@@ -113,6 +139,7 @@ class _RegisterState extends State<Register> {
                       ),
                 ),
                 const SizedBox(height: 32),
+
                 Center(
                   child: BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
@@ -142,11 +169,11 @@ class _RegisterState extends State<Register> {
                                   width: 20,
                                   height: 20,
                                   child: CircularProgressIndicator(
-                                    color: Colors.white,
+                                    color: AppColors.white,
                                     strokeWidth: 2,
                                   ),
                                 )
-                                : const Text('Registrieren'),
+                                : const Text(AppTexts.registerButton),
                       );
                     },
                   ),
@@ -157,8 +184,9 @@ class _RegisterState extends State<Register> {
                     onPressed: () {
                       context.goNamed('login');
                     },
-                    child: const Text(
-                      'Bereits einen Account? Jetzt einloggen.',
+                    child: Text(
+                      AppTexts.registerLoginLink,
+                      style: AppTextStyles.link,
                     ),
                   ),
                 ),

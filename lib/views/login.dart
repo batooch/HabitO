@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habito/constants/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 import 'package:habito/bloc/auth/auth_bloc.dart';
 import 'package:habito/bloc/auth/auth_event.dart';
 import 'package:habito/bloc/auth/auth_state.dart';
@@ -51,12 +53,15 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
           }
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
+            SnackBar(
+              content: Text(state.message),
+              backgroundColor: AppColors.red,
+            ),
           );
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Login')),
+        appBar: AppBar(title: Text(AppTexts.loginTitle)),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -64,21 +69,26 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('E-Mail:'),
+                Text(AppTexts.loginEmailLabel, style: AppTextStyles.bodyMedium),
                 TextFormField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: 'Deine E-Mail-Adresse',
+                  decoration: InputDecoration(
+                    hintText: AppTexts.loginEmailHint,
                   ),
                   validator: AuthInputValidators.validateEmail,
                 ),
                 const SizedBox(height: 16),
-                const Text('Passwort:'),
+                Text(
+                  AppTexts.loginPasswordLabel,
+                  style: AppTextStyles.bodyMedium,
+                ),
                 TextFormField(
                   controller: passwordController,
                   obscureText: true,
-                  decoration: const InputDecoration(hintText: 'Dein Passwort'),
+                  decoration: InputDecoration(
+                    hintText: AppTexts.loginPasswordHint,
+                  ),
                   validator: AuthInputValidators.validatePasswordLogin,
                 ),
                 const SizedBox(height: 32),
@@ -86,7 +96,6 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                   child: BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
                       final isLoading = state is AuthLoading;
-
                       return ElevatedButton(
                         onPressed:
                             isLoading
@@ -96,7 +105,6 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                                     final email = emailController.text.trim();
                                     final password =
                                         passwordController.text.trim();
-
                                     context.read<AuthBloc>().add(
                                       LoginRequested(
                                         email: email,
@@ -115,7 +123,7 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                                     color: Colors.white,
                                   ),
                                 )
-                                : const Text('Login'),
+                                : Text(AppTexts.loginButton),
                       );
                     },
                   ),
@@ -126,8 +134,9 @@ class _EasyTestLoginState extends State<EasyTestLogin> {
                     onPressed: () {
                       context.goNamed('register');
                     },
-                    child: const Text(
-                      'Noch keinen Account? Jetzt registrieren.',
+                    child: Text(
+                      AppTexts.noAccountText,
+                      style: AppTextStyles.link,
                     ),
                   ),
                 ),

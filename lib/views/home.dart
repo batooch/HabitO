@@ -10,6 +10,8 @@ import 'package:habito/bloc/user/user_bloc.dart';
 import 'package:habito/bloc/user/user_event.dart';
 import 'package:habito/bloc/habit_time_range/time_range_bloc.dart';
 import 'package:habito/bloc/habit_time_range/time_range_state.dart';
+import 'package:habito/constants/app_text_styles.dart';
+import 'package:habito/constants/app_texts.dart';
 
 import 'package:habito/models/habit.dart';
 import 'package:habito/widgets/custom_fab.dart';
@@ -48,7 +50,6 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFFFAF5EE),
         appBar: AppBar(
           elevation: 0,
           actions: const [
@@ -61,10 +62,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Deine Gewohnheiten',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+                Text(AppTexts.homeHeadline, style: AppTextStyles.headlineLarge),
                 const SizedBox(height: 20),
                 Expanded(
                   child: BlocBuilder<HabitBloc, HabitState>(
@@ -80,7 +78,10 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
 
                         if (habits.isEmpty) {
                           return const Center(
-                            child: Text('Noch keine Habits erstellt.'),
+                            child: Text(
+                              AppTexts.homeScreenNoHabits,
+                              style: AppTextStyles.bodyMedium,
+                            ),
                           );
                         }
 
@@ -104,21 +105,21 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
                               children: [
                                 if (morningHabits.isNotEmpty)
                                   HabitTimeSection(
-                                    title: 'Morgens',
+                                    title: AppTexts.morning,
                                     timeText: morningTime,
                                     habits: morningHabits,
                                     onHabitTap: _showHabitDetailsDialog,
                                   ),
                                 if (noonHabits.isNotEmpty)
                                   HabitTimeSection(
-                                    title: 'Mittags',
+                                    title: AppTexts.midday,
                                     timeText: noonTime,
                                     habits: noonHabits,
                                     onHabitTap: _showHabitDetailsDialog,
                                   ),
                                 if (eveningHabits.isNotEmpty)
                                   HabitTimeSection(
-                                    title: 'Abends',
+                                    title: AppTexts.evening,
                                     timeText: eveningTime,
                                     habits: eveningHabits,
                                     onHabitTap: _showHabitDetailsDialog,
@@ -153,7 +154,7 @@ class _HomeScreenWithHabitsState extends State<HomeScreenWithHabits> {
               context.pop();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Habit erfolgreich gelöscht.'),
+                  content: Text(AppTexts.habitDeleted),
                   duration: Duration(seconds: 3),
                 ),
               );

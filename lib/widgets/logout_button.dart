@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:habito/bloc/auth/auth_bloc.dart';
 import 'package:habito/bloc/auth/auth_event.dart';
 import 'package:habito/bloc/auth/auth_state.dart';
+import 'package:habito/constants/app_colors.dart';
+import 'package:habito/constants/app_texts.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -17,9 +19,9 @@ class LogoutButton extends StatelessWidget {
               current is Unauthenticated || current is AuthError,
       listener: (context, state) {
         if (state is Unauthenticated) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Du wurdest erfolgreich abgemeldet.')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text(AppTexts.logoutSuccess)));
           context.goNamed('login');
         } else if (state is AuthError) {
           ScaffoldMessenger.of(
@@ -31,8 +33,8 @@ class LogoutButton extends StatelessWidget {
         onPressed: () {
           context.read<AuthBloc>().add(const LogoutRequested());
         },
-        icon: const Icon(Icons.logout, color: Colors.red),
-        label: const Text('Logout', style: TextStyle(color: Colors.red)),
+        icon: const Icon(Icons.logout, color: AppColors.red),
+        label: const Text('Logout', style: TextStyle(color: AppColors.red)),
       ),
     );
   }
