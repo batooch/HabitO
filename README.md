@@ -1,84 +1,84 @@
-  <img src="assets/images/LogoHabitO.jpeg" alt="Habit-O Logo" height="200"/>
+<img src="assets/images/LogoHabitO.jpeg" alt="Habit-O Logo" height="200"/>
 
-# 🧠 Habit-O - eine App um  Gewohnheiten zu tracken
+# 🧠 Habit-O – A Habit Tracking App
 
 [![Flutter](https://img.shields.io/badge/flutter-3.29.3-blue?logo=flutter)](https://flutter.dev)
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](#)
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios-yellow?logo=flutter)](#)
-[![Firebase](https://img.shields.io/badge/backend-firebase-orange?logo=firebase)](https://firebase.google.com/)[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+[![Firebase](https://img.shields.io/badge/backend-firebase-orange?logo=firebase)](https://firebase.google.com/)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-**From Zero to Hero – Schritt für Schritt zur besseren Version deiner selbst.**  
-Habit-O hilft dir, neue Routinen zu entwickeln – ganz ohne Druck, aber mit Struktur, Motivation und Klarheit.
-
----
-
-## 🧩 Problem, das Habit-O löst
-
-Viele Menschen nehmen sich neue Gewohnheiten vor – sei es mehr Sport, früher Schlafen oder Selfcare. Doch im
-Alltagsstress oder bei nachlassender Motivation fällt es schwer, am Ball zu bleiben.
-
-**Habit-O** unterstützt dich mit:
-
-- 🆕 intuitivem Anlegen von Gewohnheiten
-- ✅ täglichem Abhaken zur Erfolgskontrolle
-- 🤖 KI-gestützten Habit-Vorschlägen durch *Ori*
-- 📊 Verlaufsübersicht deiner Routinen (geplant)
+**From zero to hero – step by step toward a better version of yourself.**  
+Habit-O helps you build new routines — with structure, motivation, and clarity, but without pressure.
 
 ---
 
-## 👤 Für wen ist Habit-O?
+## 🧩 The Problem Habit-O Solves
 
-### 🎓 Persona: Annika, 19, Studentin im 2. Semester
+Many people want to establish new habits — whether it's more exercise, better sleep, or self-care.  
+But when daily life gets busy or motivation fades, they often fall off track.
 
-Annika ist frisch ausgezogen und möchte Struktur in ihren Alltag bringen. Sie hat viele Ideen, wie sie sich verbessern
-könnte, scheitert aber oft an der Umsetzung.
+**Habit-O helps you by offering:**
 
-Sie will:
-
-- Klarheit über ihre Ziele
-- stolz auf sich selbst sein
-- Routinen, die zu ihrem Leben passen
-
-Doch sie kämpft mit:
-
-- Selbstzweifeln und Perfektionismus
-- zu großen Plänen, die sie schnell überfordern
-- fehlender Übersicht, wie konsequent sie wirklich ist
-
-**Habit-O** ist ihr kleiner Begleiter – ohne Druck, aber mit klarem Plan.
+- 🆕 Intuitive habit creation
+- ✅ Daily check-off for accountability
+- 🤖 AI-based habit suggestions via *Ori*
+- 📊 Visual long-term progress overview *(planned)*
 
 ---
 
-### 👩‍👧 Persona: Maria, 35, berufstätige Mutter
+## 👤 Who Is Habit-O For?
 
-Maria hat zwei Kinder und einen Teilzeitjob, wodurch ihr Alltag sehr ausgelastet ist. Sie möchte trotzdem persönliche
-Gewohnheiten wie tägliches Lesen oder Meditation pflegen, verliert diese im Trubel jedoch leicht aus den Augen.
+### 🎓 Persona: Annika, 19, second-semester student
 
-**Sie will:**
+Annika recently moved out and wants more structure in her daily life.  
+She has lots of ideas for self-improvement but struggles to follow through.
 
-- mehr Balance zwischen Alltag und Selbstfürsorge
-- ihrer Tochter ein gutes Vorbild sein
-- kurze Momente für sich sinnvoll nutzen
+**She wants:**
 
-**Doch sie kämpft mit:**
+- clarity about her goals
+- to feel proud of herself
+- routines that fit her student lifestyle
 
-- spontanen Zeitfenstern, die oft verpuffen
-- Schuldgefühlen, wenn sie sich Zeit für sich nimmt
-- Routinen, die nicht zu ihrem Alltag passen
+**But she struggles with:**
 
-**Habit-O** hilft ihr mit klarer Übersicht, kleinen Schritten und (zukünftig) Erinnerungen, ihre Vorhaben im Blick zu
-behalten – ganz ohne zusätzlichen Stress.
+- self-doubt and perfectionism
+- overwhelming goals that are hard to start
+- lack of insight into how consistent she really is
+
+**Habit-O** is her small everyday coach — no pressure, but a clear plan.
+
+---
+
+### 👩‍👧 Persona: Maria, 35, working mother
+
+Maria has two kids and a part-time job, making her days very full.  
+She wants to add personal habits like daily reading or meditation, but often loses track in everyday chaos.
+
+**She wants:**
+
+- more balance between responsibilities and self-care
+- to be a strong role model for her daughter
+- to use short free-time windows meaningfully
+
+**But she struggles with:**
+
+- spontaneous moments that go to waste
+- guilt when taking time for herself
+- routines that don’t match her hectic day
+
+**Habit-O** helps her stay on track with simple steps and clear structure — and future reminders to stay motivated.
 
 ---
 
 ## 🖼 Screens
 
-| Screen                         | Beschreibung                                                                    |
-|--------------------------------|---------------------------------------------------------------------------------|
-| 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
-| ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
-| 🤖 **Ori Chat**                | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
-| 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                 |
+| Screen              | Description                                                              |
+|---------------------|---------------------------------------------------------------------------|
+| 🏠 **Home Screen**   | Displays today’s habits grouped by time of day (morning, noon, evening)  |
+| ➕ **Create Habit**  | Create new habits with title and preferred time of day                   |
+| 🤖 **Ori Chat**      | AI helps convert goals into practical steps                              |
+| 📊 **Progress View** *(planned)* | Calendar view with green-highlighted completed days          |
 
 ### 📸 Screenshots
 
@@ -95,109 +95,66 @@ behalten – ganz ohne zusätzlichen Stress.
 
 ## 🚀 Features
 
-- ✅ **Habits anlegen**
-- ⏰ **Zeitbasierte Gruppierung (z. B. morgens/abends)**
-- ✅ **Habits löschen**
-- 📤 **Daten persistent in Firestore speichern**
-- 🤖 **Ori (KI-Vorschläge für neue Habits)**
-- 📅 **Verlauf über einen längeren Zeitraum einsehbar(unvollständig)**
+- ✅ **Create and manage new habits**
+- ⏰ **Time-based grouping (morning, noon, evening)**
+- ✅ **Delete habits**
+- 📤 **Store habits and status persistently in Firestore**
+- 🤖 **Receive AI-generated habit suggestions with Ori**
+- 📅 **Track progress over time** *(feature incomplete)*
 
 ---
 
-## 🤖 KI-Feature „Ori“ – externes Backend
+## 🤖 AI Feature "Ori" – External Backend
 
-Das Feature **„Ori“** bietet Nutzern personalisierte Vorschläge für neue Gewohnheiten, die sie noch nicht in ihrer Liste
-haben.  
-Es dient als kreative Starthilfe – besonders für Menschen, die nicht wissen, wie sie anfangen sollen oder neue Impulse
-brauchen.
+The **Ori** feature provides personalized ideas for new habits the user hasn't already listed.  
+It acts as a creative boost — especially when you're stuck or don’t know where to begin.
 
-### ⚙️ Funktionsweise
+### ⚙️ How it works
 
-- Die App sendet eine Liste von bereits vorhandenen Gewohnheiten (Strings) an das **Ori-Backend**
-- Dieses ist ein **Java-Backend mit Quarkus**, das auf **GPT-4o** von OpenAI zugreift
-- GPT-4o analysiert die Eingaben und generiert neue, passende Vorschläge, **die inhaltlich sinnvoll, aber noch nicht
-  redundant sind**
-- Die Antwort ist eine Liste neuer, motivierender Habit-Ideen
+- The app sends a list of existing habits to the **Ori backend**
+- This backend is a **Java Quarkus application**, connected to **GPT-4o** via OpenAI
+- GPT-4o analyzes the input and generates meaningful, **non-redundant** suggestions
+- The response is a list of new, personalized habit ideas
 
-### 🧰 Technologie-Stack
+### 🧰 Technology Stack
 
-| Komponente     | Beschreibung                            |
-|----------------|-----------------------------------------|
-| **Backend**    | Java mit [Quarkus]                      |
-| **API Layer**  | REST mit Jakarta WS (`@Path`, `@POST`)  |
-| **KI-Modell**  | GPT-4o von OpenAI                       |
-| **Deployment** | Extern gehostet (Produktiv erreichbar)  |
-| **Verbindung** | `POST /chat/habits` – JSON-Ein-/Ausgabe |
+| Component     | Description                                     |
+|---------------|-------------------------------------------------|
+| **Backend**   | Java with [Quarkus](https://quarkus.io/)        |
+| **API Layer** | REST via Jakarta WS (`@Path`, `@POST`)          |
+| **AI Model**  | GPT-4o by OpenAI                                |
+| **Hosting**   | Deployed and reachable externally               |
+| **Endpoint**  | `POST /chat/habits` — receives & returns JSON   |
 
 ---
 
-## 📂 Projektstruktur
+## 📂 Project Structure
 
-Die App basiert auf dem **Layer-First-Architekturprinzip**, bei dem der Code nach Verantwortlichkeiten (Daten, Logik,
-Präsentation etc.) gegliedert ist.
+The app follows the **Layer-First Architecture**, meaning all code is organized by responsibility:  
+logic, UI, data models, storage and external services are clearly separated.
 
-### 📁 Ordnerstruktur
+### 📁 Folder Overview
 
 ```bash
 lib/
 │
-├── bloc/                   # State-Management (Bloc) nach Feature gruppiert
+├── bloc/                   # State management per feature
 │   ├── auth/
 │   ├── habit/
 │   ├── habit_time_range/
 │   └── user/
 │
-├── constants/              # Zentrale App-Konstanten (Farben, Texte, TextStyles)
-│   ├── app_colors.dart
-│   ├── app_text_styles.dart
-│   └── app_texts.dart
-│
-├── interfaces/             # Abstrakte Interfaces für Services & Repositories
-│   ├── i_auth_service.dart
-│   ├── i_habit_repository.dart
-│   └── i_time_range_repository.dart
-│
-├── models/                 # Datenmodelle 
-│   ├── habit.dart
-│   └── time_of_day_range.dart
-│
-├── repository/             # Firestore-Repositories (Implementierung der Interfaces)
-│   ├── habit_repository.dart
-│   └── time_range_repository.dart
-│
-├── router/                 # Routing mit GoRouter
-│   ├── app_router.dart
-│   └── navigation_shell.dart
-│
-├── services/               # Logik für Authentifizierung und KI (Ori)
-│   ├── auth_service.dart
-│   └── ori_service.dart
-│
-├── validators/             # Validierungslogik für Benutzereingaben
-│   └── auth_input_validators.dart
-│
-├── views/                  # UI-Seiten (Screens)
-│   ├── create_habit.dart
-│   ├── habit_overview.dart
-│   ├── home.dart
-│   ├── intro.dart
-│   ├── login.dart
-│   ├── my_profile.dart
-│   ├── ori_chat.dart
-│   └── register.dart
-│
-├── widgets/                # Wiederverwendbare UI-Komponenten
-│   ├── custom_fab.dart
-│   ├── habit_card.dart
-│   ├── habit_details_dialog.dart
-│   ├── habit_time_section.dart
-│   ├── logout_button.dart
-│   ├── ori_light.dart
-│   ├── time_option_chip.dart
-│   └── user_menu.dart
-│
-├── firebase_options.dart   # Firebase-Konfiguration
-└── main.dart               # Einstiegspunkt der App
+├── constants/              # Central color, text, and style definitions
+├── interfaces/             # Abstract contracts for services and repositories
+├── models/                 # Data models (Habit, TimeRange, etc.)
+├── repository/             # Firestore repositories
+├── router/                 # Navigation with GoRouter
+├── services/               # Authentication and Ori AI logic
+├── validators/             # Input validation logic
+├── views/                  # Screens: home, create, login, profile, etc.
+├── widgets/                # Reusable UI components
+├── firebase_options.dart   # Firebase configuration
+└── main.dart               # App entry point
 
 ---
 ## 🧰 Tech Stack
@@ -215,12 +172,12 @@ lib/
 
 ## 🛠 Installation
 
-##    Voraussetzungen
+##   Prerequisites
 
 - 🐦 **Flutter SDK** >= 3.7.2  
 - 💻 Eine Entwicklungsumgebung wie _IntelliJ IDEA_
 
-### Lokale Ausführung
+### Run locally
 
 ```bash
 git clone https://github.com/batooch/HabitO.git
