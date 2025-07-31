@@ -96,7 +96,7 @@ She wants to add personal habits like daily reading or meditation, but often los
 - ✅ **Create and manage new habits**
 - ⏰ **Time-based grouping (morning, noon, evening)**
 - ✅ **Delete habits**
-- 📤 **Store habits and status persistently in Firestore**
+- 📤 **Store habits persistently in Firestore**
 - 🤖 **Receive AI-generated habit suggestions with Ori**
 - 📅 **Track progress over time** *(feature incomplete)*
 
