@@ -2,11 +2,10 @@
 
 # 🧠 Habit-O - eine App um  Gewohnheiten zu tracken
 
-[![Flutter](https://img.shields.io/badge/flutter-3.19.2-blue?logo=flutter)](https://flutter.dev)
+[![Flutter](https://img.shields.io/badge/flutter-3.29.3-blue?logo=flutter)](https://flutter.dev)
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](#)
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios-yellow?logo=flutter)](#)
-[![Firebase](https://img.shields.io/badge/backend-firebase-orange?logo=firebase)](https://firebase.google.com/)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](#)
+[![Firebase](https://img.shields.io/badge/backend-firebase-orange?logo=firebase)](https://firebase.google.com/)[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **From Zero to Hero – Schritt für Schritt zur besseren Version deiner selbst.**  
 Habit-O hilft dir, neue Routinen zu entwickeln – ganz ohne Druck, aber mit Struktur, Motivation und Klarheit.
@@ -52,7 +51,7 @@ Doch sie kämpft mit:
 
 ### 👩‍👧 Persona: Maria, 35, berufstätige Mutter
 
-Maria hat zwei Kinder und einen Vollzeitjob, wodurch ihr Alltag sehr ausgelastet ist. Sie möchte trotzdem persönliche
+Maria hat zwei Kinder und einen Teilzeitjob, wodurch ihr Alltag sehr ausgelastet ist. Sie möchte trotzdem persönliche
 Gewohnheiten wie tägliches Lesen oder Meditation pflegen, verliert diese im Trubel jedoch leicht aus den Augen.
 
 **Sie will:**
@@ -74,32 +73,70 @@ behalten – ganz ohne zusätzlichen Stress.
 
 ## 🖼 Screens
 
-| Screen                         | Beschreibung                                                                     |
-|--------------------------------|----------------------------------------------------------------------------------|
-| 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags, abends) |
-| ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                                |
-| 🧠 **Ori Chat **               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                     |
-| 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                  |
+| Screen                         | Beschreibung                                                                    |
+|--------------------------------|---------------------------------------------------------------------------------|
+| 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
+| ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
+| 🤖 **Ori Chat **               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
+| 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                 |
+
+### 📸 Screenshots
+
+<p align="center">
+  <img src="assets/images/screens_readme/StartScreen.png" alt="Start Screen" width="200"/>
+  <img src="assets/images/screens_readme/HomeScreen.png" alt="Home Screen" width="200"/>
+</p>
+<p align="center">
+  <img src="assets/images/screens_readme/CreateHabitScreen.png" alt="Create Habit Screen" width="200"/>
+  <img src="assets/images/screens_readme/OriScreen.png" alt="Ori Chat Screen" width="200"/>
+</p>
 
 ---
 
 ## 🚀 Features
 
-- ✅ **Habits anlegen & verwalten**
+- ✅ **Habits anlegen**
 - ⏰ **Zeitbasierte Gruppierung (z. B. morgens/abends)**
-- 📅 **Verlauf über einen längeren Zeitraum einsehbar**
-- ✅ **Checkbox zum Abhaken → Visual Feedback (ausgrauen)**
-- 📤 **Daten persistent in Firestore gespeichert**
-- 🔔 **(Optional) Erinnerungen geplant**
-- 🤖 **Ori (KI-Vorschläge für neue Habits) – in Planung**
+- ✅ **Habits löschen**
+- 📤 **Daten persistent in Firestore speichern**
+- 🤖 **Ori (KI-Vorschläge für neue Habits)**
+- 📅 **Verlauf über einen längeren Zeitraum einsehbar(unvollständig)**
 
 ---
+
+## 🤖 KI-Feature „Ori“ – externes Backend
+
+Das Feature **„Ori“** bietet Nutzern personalisierte Vorschläge für neue Gewohnheiten, die sie noch nicht in ihrer Liste
+haben.  
+Es dient als kreative Starthilfe – besonders für Menschen, die nicht wissen, wie sie anfangen sollen oder neue Impulse
+brauchen.
+
+### ⚙️ Funktionsweise
+
+- Die App sendet eine Liste von bereits vorhandenen Gewohnheiten (Strings) an das **Ori-Backend**
+- Dieses ist ein **Java-Backend mit Quarkus**, das auf **GPT-4o** von OpenAI zugreift
+- GPT-4o analysiert die Eingaben und generiert neue, passende Vorschläge, **die inhaltlich sinnvoll, aber noch nicht
+  redundant sind**
+- Die Antwort ist eine Liste neuer, motivierender Habit-Ideen
+
+### 🧰 Technologie-Stack
+
+| Komponente     | Beschreibung                            |
+|----------------|-----------------------------------------|
+| **Backend**    | Java mit [Quarkus]                      |
+| **API Layer**  | REST mit Jakarta WS (`@Path`, `@POST`)  |
+| **KI-Modell**  | GPT-4o von OpenAI                       |
+| **Deployment** | Extern gehostet (Produktiv erreichbar)  |
+| **Verbindung** | `POST /chat/habits` – JSON-Ein-/Ausgabe |
 
 ---
 
 ## 📂 Projektstruktur
 
-Die App basiert auf dem **Layer-First-Architekturprinzip**, bei dem der Code nach Verantwortlichkeiten (Daten, Logik, Präsentation etc.) gegliedert ist.  
+Die App basiert auf dem **Layer-First-Architekturprinzip**, bei dem der Code nach Verantwortlichkeiten (Daten, Logik,
+Präsentation etc.) gegliedert ist.
+
+### 📁 Ordnerstruktur
 
 ```bash
 lib/
@@ -163,38 +200,37 @@ lib/
 └── main.dart               # Einstiegspunkt der App
 
 ---
-## ⚙️ Tech Stack
+## 🧰 Tech Stack
 
 | Layer      | Tools & Libraries                                 |
 |------------|---------------------------------------------------|
-| Frontend   | Flutter 3.19, Dart (null safety), GetX, Bloc      |
+| Frontend   | Flutter 3.29.3, Dart 3.7.2            |
 | State Mgmt | Bloc, flutter_bloc                                |
-| Backend    | Firebase Auth, Firestore, (Ori in Planung)        |
-| Storage    | Firestore: `/users/{uid}/habits/…`                |
+| Backend    | Firebase Auth, Firestore Firebase          |
 | Extras     | SharedPreferences für Intro-Tracking              |
-| UI         | Tailwind-ähnlich mit `Theme`, Icons, `TextStyles` |
+| UI         | Eigene `Theme`, Icons, `TextStyles`               |
+
 
 ---
 
 ## 🛠 Installation
 
-### Voraussetzungen
+##    Voraussetzungen
 
-- Flutter SDK >= 3.19
-- Android Studio oder VS Code
-- Firebase-Projekt (E-Mail/Passwort Auth + Firestore)
+- 🐦 **Flutter SDK** >= 3.7.2  
+- 💻 Eine Entwicklungsumgebung wie _IntelliJ IDEA_
 
 ### Lokale Ausführung
 
 ```bash
-git clone https://github.com/DEIN_GITHUB_USERNAME/habit-o.git
-cd habit-o
+git clone https://github.com/batooch/HabitO.git
+cd habito
 flutter pub get
 flutter run
 
 ---
 
-#### 👨‍💻 Developed and designed with passion by:
+#### 👩‍💻 Developed and designed with passion by:
 
 - [@batooch](https://github.com/batooch)
 
