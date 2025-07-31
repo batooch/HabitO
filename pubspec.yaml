@@ -34,8 +34,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/LogoHabitO.jpeg
+assets:
+  - assets/images/LogoHabitO.jpeg
+  - assets/images/screens_readme/
 
 flutter_native_splash:
   color: "#FAF5EE"

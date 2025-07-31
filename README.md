@@ -73,11 +73,11 @@ behalten – ganz ohne zusätzlichen Stress.
 
 ## 🖼 Screens
 
-| Screen                         | Beschreibung                                                                    |
-|--------------------------------|---------------------------------------------------------------------------------|
-| 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
-| ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
-| 🤖 **Ori Chat **               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
+| Screen                        | Beschreibung                                                                    |
+|-------------------------------|---------------------------------------------------------------------------------|
+| 🏠 **Home Screen**            | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
+| ➕ **Create Habit**            | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
+| 🤖 **Ori Chat**               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
 | 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                 |
 
 ### 📸 Screenshots
