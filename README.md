@@ -145,7 +145,7 @@ lib/
 ├── constants/              # Central color, text, and style definitions
 ├── interfaces/             # Abstract contracts for services and repositories
 ├── models/                 # Data models (Habit, TimeRange, etc.)
-├── repository/             # Firestore repositories
+├── repository/             # repositories
 ├── router/                 # Navigation with GoRouter
 ├── services/               # Authentication and Ori AI logic
 ├── validators/             # Input validation logic
@@ -172,11 +172,11 @@ lib/
 ##   Prerequisites
 
 - 🐦 **Flutter SDK** >= 3.7.2  
-- 💻 Eine Entwicklungsumgebung wie _IntelliJ IDEA_
+- 💻 A development environment such as IntelliJ IDEA
 
 ### Run locally
 
-```bash
+
 git clone https://github.com/batooch/HabitO.git
 cd habito
 flutter pub get
