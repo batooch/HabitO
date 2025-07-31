@@ -1,6 +1,4 @@
-<p align="center">
   <img src="assets/images/LogoHabitO.jpeg" alt="Habit-O Logo" height="200"/>
-</p>
 
 # 🧠 Habit-O - eine App um deine Gewohnheiten zu tracken
 
