@@ -1,12 +1,11 @@
 <img src="assets/images/LogoHabitO.jpeg" alt="Habit-O Logo" height="200"/>
 
-# 🧠 Habit-O – A Habit Tracking App
+# 🌱 Habit-O – A Habit Tracking App
 
 [![Flutter](https://img.shields.io/badge/flutter-3.29.3-blue?logo=flutter)](https://flutter.dev)
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](#)
 [![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios-yellow?logo=flutter)](#)
 [![Firebase](https://img.shields.io/badge/backend-firebase-orange?logo=firebase)](https://firebase.google.com/)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **From zero to hero – step by step toward a better version of yourself.**  
 Habit-O helps you build new routines — with structure, motivation, and clarity, but without pressure.
@@ -21,7 +20,6 @@ But when daily life gets busy or motivation fades, they often fall off track.
 **Habit-O helps you by offering:**
 
 - 🆕 Intuitive habit creation
-- ✅ Daily check-off for accountability
 - 🤖 AI-based habit suggestions via *Ori*
 - 📊 Visual long-term progress overview *(planned)*
 
@@ -67,7 +65,7 @@ She wants to add personal habits like daily reading or meditation, but often los
 - guilt when taking time for herself
 - routines that don’t match her hectic day
 
-**Habit-O** helps her stay on track with simple steps and clear structure — and future reminders to stay motivated.
+**Habit-O** helps her stay on track with simple steps and clear structure.
 
 ---
 
@@ -107,7 +105,7 @@ She wants to add personal habits like daily reading or meditation, but often los
 ## 🤖 AI Feature "Ori" – External Backend
 
 The **Ori** feature provides personalized ideas for new habits the user hasn't already listed.  
-It acts as a creative boost — especially when you're stuck or don’t know where to begin.
+It acts as a creative boost — especially when you're stuck.
 
 ### ⚙️ How it works
 
@@ -118,13 +116,13 @@ It acts as a creative boost — especially when you're stuck or don’t know whe
 
 ### 🧰 Technology Stack
 
-| Component     | Description                                     |
-|---------------|-------------------------------------------------|
-| **Backend**   | Java with [Quarkus](https://quarkus.io/)        |
-| **API Layer** | REST via Jakarta WS (`@Path`, `@POST`)          |
-| **AI Model**  | GPT-4o by OpenAI                                |
-| **Hosting**   | Deployed and reachable externally               |
-| **Endpoint**  | `POST /chat/habits` — receives & returns JSON   |
+| Component     | Description                                   |
+|---------------|-----------------------------------------------|
+| **Backend**   | Java with [Quarkus](https://quarkus.io/)      |
+| **API Layer** | REST via Jakarta WS (`@Path`, `@POST`)        |
+| **AI Model**  | GPT-4o by OpenAI                              |
+| **Hosting**   | Deployed via Goggle Cloud Run                 |
+| **Endpoint**  | `POST /chat/habits` — receives & returns JSON |
 
 ---
 
@@ -161,11 +159,10 @@ lib/
 
 | Layer      | Tools & Libraries                                 |
 |------------|---------------------------------------------------|
-| Frontend   | Flutter 3.29.3, Dart 3.7.2            |
+| Frontend   | Flutter 3.29.3, Dart 3.7.2                        |
 | State Mgmt | Bloc, flutter_bloc                                |
-| Backend    | Firebase Auth, Firestore Firebase          |
+| Backend    | Firebase Auth, Firestore Firebase                 |
 | Extras     | SharedPreferences für Intro-Tracking              |
-| UI         | Eigene `Theme`, Icons, `TextStyles`               |
 
 
 ---
