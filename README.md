@@ -73,22 +73,22 @@ behalten – ganz ohne zusätzlichen Stress.
 
 ## 🖼 Screens
 
-| Screen                        | Beschreibung                                                                    |
-|-------------------------------|---------------------------------------------------------------------------------|
-| 🏠 **Home Screen**            | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
-| ➕ **Create Habit**            | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
-| 🤖 **Ori Chat**               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
+| Screen                         | Beschreibung                                                                    |
+|--------------------------------|---------------------------------------------------------------------------------|
+| 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags,abends) |
+| ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                               |
+| 🤖 **Ori Chat**                | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                    |
 | 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                 |
 
 ### 📸 Screenshots
 
 <p align="center">
-  <img src="assets/images/screens_readme/StartScreen.png" alt="Start Screen" width="200"/>
-  <img src="assets/images/screens_readme/HomeScreen.png" alt="Home Screen" width="200"/>
+  <img src="assets/screens_readme/StartScreen.png" alt="Start Screen" width="200"/>
+  <img src="assets/screens_readme/HomeScreen.png" alt="Home Screen" width="200"/>
 </p>
 <p align="center">
-  <img src="assets/images/screens_readme/CreateHabitScreen.png" alt="Create Habit Screen" width="200"/>
-  <img src="assets/images/screens_readme/OriScreen.png" alt="Ori Chat Screen" width="200"/>
+  <img src="assets/screens_readme/CreateHabitScreen.png" alt="Create Habit Screen" width="200"/>
+  <img src="assets/screens_readme/OriScreen.png" alt="Ori Chat Screen" width="200"/>
 </p>
 
 ---
