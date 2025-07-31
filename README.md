@@ -1,6 +1,6 @@
   <img src="assets/images/LogoHabitO.jpeg" alt="Habit-O Logo" height="200"/>
 
-# 🧠 Habit-O - eine App um deine Gewohnheiten zu tracken
+# 🧠 Habit-O - eine App um  Gewohnheiten zu tracken
 
 [![Flutter](https://img.shields.io/badge/flutter-3.19.2-blue?logo=flutter)](https://flutter.dev)
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](#)
@@ -50,14 +50,36 @@ Doch sie kämpft mit:
 
 ---
 
-## 🖼 Screens (Mockups & App UI)
+### 👩‍👧 Persona: Maria, 35, berufstätige Mutter
+
+Maria hat zwei Kinder und einen Vollzeitjob, wodurch ihr Alltag sehr ausgelastet ist. Sie möchte trotzdem persönliche
+Gewohnheiten wie tägliches Lesen oder Meditation pflegen, verliert diese im Trubel jedoch leicht aus den Augen.
+
+**Sie will:**
+
+- mehr Balance zwischen Alltag und Selbstfürsorge
+- ihrer Tochter ein gutes Vorbild sein
+- kurze Momente für sich sinnvoll nutzen
+
+**Doch sie kämpft mit:**
+
+- spontanen Zeitfenstern, die oft verpuffen
+- Schuldgefühlen, wenn sie sich Zeit für sich nimmt
+- Routinen, die nicht zu ihrem Alltag passen
+
+**Habit-O** hilft ihr mit klarer Übersicht, kleinen Schritten und (zukünftig) Erinnerungen, ihre Vorhaben im Blick zu
+behalten – ganz ohne zusätzlichen Stress.
+
+---
+
+## 🖼 Screens
 
 | Screen                         | Beschreibung                                                                     |
 |--------------------------------|----------------------------------------------------------------------------------|
 | 🏠 **Home Screen**             | Zeigt deine heutigen Habits – gruppiert nach Tageszeit (morgens,mittags, abends) |
 | ➕ **Create Habit**             | Neue Gewohnheiten mit Titel und Tageszeit anlegen                                |
-| 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                  |
 | 🧠 **Ori Chat **               | KI hilft dir, deine Ziele in konkrete Schritte zu verwandeln                     |
+| 📊 **Progress View (geplant)** | Monatsübersicht mit grün markierten Habit-Tagen                                  |
 
 ---
 
@@ -73,20 +95,74 @@ Doch sie kämpft mit:
 
 ---
 
-## 🧱 Architektur
-
-Die App folgt dem MVC-Prinzip und verwendet zusätzlich Bloc zur State-Verwaltung.
-
-**Ordnerstruktur:**
-
-- `lib/ui/` – Views: Home, Habit erstellen, Profil …
-- `lib/controllers/` – Logik für das Abrufen, Speichern, Sortieren
-- `lib/models/` – Datenmodelle für Habit & User
-- `lib/bloc/` – State Management für Habits, User, Zeitspannen
-- `lib/services/` – Firebase Auth, Firestore, Ori-Service
-
 ---
 
+## 📂 Projektstruktur
+
+Die App basiert auf dem **Layer-First-Architekturprinzip**, bei dem der Code nach Verantwortlichkeiten (Daten, Logik, Präsentation etc.) gegliedert ist.  
+
+```bash
+lib/
+│
+├── bloc/                   # State-Management (Bloc) nach Feature gruppiert
+│   ├── auth/
+│   ├── habit/
+│   ├── habit_time_range/
+│   └── user/
+│
+├── constants/              # Zentrale App-Konstanten (Farben, Texte, TextStyles)
+│   ├── app_colors.dart
+│   ├── app_text_styles.dart
+│   └── app_texts.dart
+│
+├── interfaces/             # Abstrakte Interfaces für Services & Repositories
+│   ├── i_auth_service.dart
+│   ├── i_habit_repository.dart
+│   └── i_time_range_repository.dart
+│
+├── models/                 # Datenmodelle 
+│   ├── habit.dart
+│   └── time_of_day_range.dart
+│
+├── repository/             # Firestore-Repositories (Implementierung der Interfaces)
+│   ├── habit_repository.dart
+│   └── time_range_repository.dart
+│
+├── router/                 # Routing mit GoRouter
+│   ├── app_router.dart
+│   └── navigation_shell.dart
+│
+├── services/               # Logik für Authentifizierung und KI (Ori)
+│   ├── auth_service.dart
+│   └── ori_service.dart
+│
+├── validators/             # Validierungslogik für Benutzereingaben
+│   └── auth_input_validators.dart
+│
+├── views/                  # UI-Seiten (Screens)
+│   ├── create_habit.dart
+│   ├── habit_overview.dart
+│   ├── home.dart
+│   ├── intro.dart
+│   ├── login.dart
+│   ├── my_profile.dart
+│   ├── ori_chat.dart
+│   └── register.dart
+│
+├── widgets/                # Wiederverwendbare UI-Komponenten
+│   ├── custom_fab.dart
+│   ├── habit_card.dart
+│   ├── habit_details_dialog.dart
+│   ├── habit_time_section.dart
+│   ├── logout_button.dart
+│   ├── ori_light.dart
+│   ├── time_option_chip.dart
+│   └── user_menu.dart
+│
+├── firebase_options.dart   # Firebase-Konfiguration
+└── main.dart               # Einstiegspunkt der App
+
+---
 ## ⚙️ Tech Stack
 
 | Layer      | Tools & Libraries                                 |
@@ -115,3 +191,12 @@ git clone https://github.com/DEIN_GITHUB_USERNAME/habit-o.git
 cd habit-o
 flutter pub get
 flutter run
+
+---
+
+#### 👨‍💻 Developed and designed with passion by:
+
+- [@batooch](https://github.com/batooch)
+
+> 💬 Feel free to reach out for questions, feedback, or collaboration ideas! 🤝🚀
+---
