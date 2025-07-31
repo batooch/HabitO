@@ -71,12 +71,12 @@ She wants to add personal habits like daily reading or meditation, but often los
 
 ## 🖼 Screens
 
-| Screen              | Description                                                              |
-|---------------------|---------------------------------------------------------------------------|
-| 🏠 **Home Screen**   | Displays today’s habits grouped by time of day (morning, noon, evening)  |
-| ➕ **Create Habit**  | Create new habits with title and preferred time of day                   |
-| 🤖 **Ori Chat**      | AI helps convert goals into practical steps                              |
-| 📊 **Progress View** *(planned)* | Calendar view with green-highlighted completed days          |
+| Screen                           | Description                                                             |
+|----------------------------------|-------------------------------------------------------------------------|
+| 🏠 **Home Screen**               | Displays today’s habits grouped by time of day (morning, noon, evening) |
+| ➕ **Create Habit**               | Create new habits with title and preferred time of day                  |
+| 🤖 **Ori Chat**                  | AI suggests new habits                                                  |
+| 📊 **Progress View** *(planned)* | Calendar view with green-highlighted completed days                     |
 
 ### 📸 Screenshots
 
